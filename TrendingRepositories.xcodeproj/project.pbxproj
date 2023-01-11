@@ -14,6 +14,7 @@
 		BB7E5E91296EEBDB00542C26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5E8E296EEBDB00542C26 /* LaunchScreen.storyboard */; };
 		BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */; };
 		BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */; };
+		BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */; };
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
 		BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5EA8296F20A500542C26 /* String+Localization.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		BB7E5E93296EEC0900542C26 /* TrendingRepositories-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TrendingRepositories-Info.plist"; sourceTree = "<group>"; };
 		BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewModel.swift; sourceTree = "<group>"; };
 		BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewController.swift; sourceTree = "<group>"; };
+		BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryPresentation.swift; sourceTree = "<group>"; };
 		BB7E5E9F296F1C8F00542C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB7E5EA3296F1CE500542C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
+				BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */,
 			);
 			path = TrendingRepositories;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
+				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
 				BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
