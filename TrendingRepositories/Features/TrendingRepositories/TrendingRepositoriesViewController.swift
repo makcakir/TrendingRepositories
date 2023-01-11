@@ -19,6 +19,6 @@ class TrendingRepositoriesViewController: UITableViewController {
 private extension TrendingRepositoriesViewController {
     
     func setupSubviews() {
-        title = "Trending"
+        title = "trending".localized()
     }
 }

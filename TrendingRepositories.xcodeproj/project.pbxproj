@@ -14,6 +14,8 @@
 		BB7E5E91296EEBDB00542C26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5E8E296EEBDB00542C26 /* LaunchScreen.storyboard */; };
 		BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */; };
 		BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */; };
+		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
+		BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5EA8296F20A500542C26 /* String+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +35,14 @@
 		BB7E5E6F296EDF6900542C26 /* TrendingRepositoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendingRepositoriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7E5E73296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 		BB7E5E8D296EEBDB00542C26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BB7E5E8F296EEBDB00542C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB7E5E93296EEC0900542C26 /* TrendingRepositories-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TrendingRepositories-Info.plist"; sourceTree = "<group>"; };
 		BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewModel.swift; sourceTree = "<group>"; };
 		BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewController.swift; sourceTree = "<group>"; };
+		BB7E5E9F296F1C8F00542C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB7E5EA3296F1CE500542C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB7E5EA6296F1D0F00542C26 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB7E5EA8296F20A500542C26 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			children = (
 				BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */,
 				BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */,
+				BB7E5EA7296F208200542C26 /* Extensions */,
 				BB7E5E95296EFC9900542C26 /* Features */,
 				BB7E5E8C296EEBDB00542C26 /* Resources */,
 				BB7E5E92296EEC0900542C26 /* SupportingFiles */,
@@ -100,6 +107,7 @@
 			children = (
 				BB7E5E8D296EEBDB00542C26 /* Assets.xcassets */,
 				BB7E5E8E296EEBDB00542C26 /* LaunchScreen.storyboard */,
+				BB7E5EA4296F1CE500542C26 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -127,6 +135,14 @@
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
 			);
 			path = TrendingRepositories;
+			sourceTree = "<group>";
+		};
+		BB7E5EA7296F208200542C26 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BB7E5EA8296F20A500542C26 /* String+Localization.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +209,8 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
+				ur,
 			);
 			mainGroup = BB7E5E50296EDF6700542C26;
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
@@ -211,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB7E5E90296EEBDB00542C26 /* Assets.xcassets in Resources */,
+				BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */,
 				BB7E5E91296EEBDB00542C26 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +250,7 @@
 			files = (
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
+				BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
 			);
@@ -258,9 +278,19 @@
 		BB7E5E8E296EEBDB00542C26 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BB7E5E8F296EEBDB00542C26 /* Base */,
+				BB7E5E9F296F1C8F00542C26 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BB7E5EA4296F1CE500542C26 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB7E5EA3296F1CE500542C26 /* en */,
+				BB7E5EA5296F1CFA00542C26 /* tr */,
+				BB7E5EA6296F1D0F00542C26 /* ur */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
