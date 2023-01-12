@@ -18,13 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
+        
+        let viewModel = TrendingRepositoriesViewModel()
         let viewController = TrendingRepositoriesViewController()
+        viewController.viewModel = viewModel
         let navigationController = UINavigationController(rootViewController: viewController)
-
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        
+        let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window.windowScene = windowScene
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        self.window = window
     }
     
 }

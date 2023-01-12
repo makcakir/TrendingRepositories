@@ -11,7 +11,7 @@ class TrendingRepositoriesViewModel {
     
     enum Change {
         case error
-        case items
+        case items(items: [TrendingRepositoryPresentation])
         case loading
     }
     
@@ -22,8 +22,25 @@ class TrendingRepositoriesViewModel {
         if forceError {
             changeHandler?(.error)
         } else {
-            changeHandler?(.items)
+            let items = prepareMockItems()
+            changeHandler?(.items(items: items))
         }
     }
+}
+
+// MARK: - Helpers
+
+private extension TrendingRepositoriesViewModel {
     
+    func prepareMockItems() -> [TrendingRepositoryPresentation] {
+        var items: [TrendingRepositoryPresentation] = []
+        for i in 1...15 {
+            let presentation = TrendingRepositoryPresentation(
+                ownerImageUrl: "", ownerName: "Owner \(i)", title: "Title \(i)",
+                description: "Description", language: "Language", starCount: i
+            )
+            items.append(presentation)
+        }
+        return items
+    }
 }
