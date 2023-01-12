@@ -35,9 +35,21 @@ private extension TrendingRepositoriesViewModel {
     func prepareMockItems() -> [TrendingRepositoryPresentation] {
         var items: [TrendingRepositoryPresentation] = []
         for i in 1...15 {
+            let description: String
+            if i % 2 == 0 {
+                description = "Description"
+            } else {
+                description = "Long description long description long description long description."
+            }
+            let owner = OwnerPresentation(
+                imageUrl: "", name:  "Owner \(i)"
+            )
+            let language = LanguagePresentation(
+                name: "Language", colorHex: "#00ADD8"
+            )
             let presentation = TrendingRepositoryPresentation(
-                ownerImageUrl: "", ownerName: "Owner \(i)", title: "Title \(i)",
-                description: "Description", language: "Language", starCount: i
+                owner: owner, title: "Title \(i)", description: description, language: language,
+                starCount: String(i), isExpanded: false
             )
             items.append(presentation)
         }

@@ -10,7 +10,7 @@ import UIKit
 class TrendingRepositoriesViewController: UITableViewController {
     
     var viewModel: TrendingRepositoriesViewModel!
-    private var items: [TrendingRepositoryPresentation] = []
+    private var presentations: [TrendingRepositoryPresentation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,8 @@ private extension TrendingRepositoriesViewController {
     
     func setupSubviews() {
         title = "trending".localized()
+        
+        tableView.registerNibReusableCell(TrendingRepositoryTableViewCell.self)
     }
     
     func bindViewModel() {
@@ -42,7 +44,7 @@ private extension TrendingRepositoriesViewController {
         case .error:
             break
         case .items(let items):
-            self.items = items
+            presentations = items
             tableView.reloadData()
         case .loading:
             break
@@ -57,19 +59,31 @@ extension TrendingRepositoriesViewController {
     override func tableView(
         _ tableView: UITableView, numberOfRowsInSection section: Int
     ) -> Int {
-        return items.count
+        return presentations.count
     }
     
     override func tableView(
         _ tableView: UITableView, cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "identifier")
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "identifier")
+        let cell = tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryTableViewCell.self)
+        let presentation = presentations[indexPath.row]
+        cell.fill(presentation)
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension TrendingRepositoriesViewController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = self.tableView.cellForRow(at: indexPath) as? TrendingRepositoryTableViewCell {
+            let presentation = presentations[indexPath.row]
+            presentation.isExpanded.toggle()
+            cell.detailStackView.isHidden.toggle()
+            UIView.animate(withDuration: 0.3) {
+                self.tableView.performBatchUpdates(nil)
+            }
         }
-        let item = items[indexPath.row]
-        cell?.textLabel?.text = item.title
-        cell?.detailTextLabel?.text = item.description
-        return cell ?? UITableViewCell()
     }
 }

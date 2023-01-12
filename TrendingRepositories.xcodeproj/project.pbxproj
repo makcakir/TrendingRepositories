@@ -17,6 +17,11 @@
 		BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */; };
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
 		BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5EA8296F20A500542C26 /* String+Localization.swift */; };
+		BBD79230297038270090C578 /* UITableView+NibRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7922F297038270090C578 /* UITableView+NibRegistering.swift */; };
+		BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */; };
+		BBD7923829703A170090C578 /* TrendingRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */; };
+		BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923929704ADE0090C578 /* UIView+Styling.swift */; };
+		BBD7923C297065170090C578 /* UIColor+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923B297065170090C578 /* UIColor+Initialization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA6296F1D0F00542C26 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA8296F20A500542C26 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		BBD7922F297038270090C578 /* UITableView+NibRegistering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+NibRegistering.swift"; sourceTree = "<group>"; };
+		BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingRepositoryTableViewCell.xib; sourceTree = "<group>"; };
+		BBD7923929704ADE0090C578 /* UIView+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
+		BBD7923B297065170090C578 /* UIColor+Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Initialization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +146,8 @@
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
 				BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */,
+				BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */,
+				BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */,
 			);
 			path = TrendingRepositories;
 			sourceTree = "<group>";
@@ -144,6 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				BB7E5EA8296F20A500542C26 /* String+Localization.swift */,
+				BBD7923B297065170090C578 /* UIColor+Initialization.swift */,
+				BBD7922F297038270090C578 /* UITableView+NibRegistering.swift */,
+				BBD7923929704ADE0090C578 /* UIView+Styling.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +248,7 @@
 			files = (
 				BB7E5E90296EEBDB00542C26 /* Assets.xcassets in Resources */,
 				BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */,
+				BBD7923829703A170090C578 /* TrendingRepositoryTableViewCell.xib in Resources */,
 				BB7E5E91296EEBDB00542C26 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,8 +270,12 @@
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
+				BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */,
+				BBD79230297038270090C578 /* UITableView+NibRegistering.swift in Sources */,
+				BBD7923C297065170090C578 /* UIColor+Initialization.swift in Sources */,
 				BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
+				BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
