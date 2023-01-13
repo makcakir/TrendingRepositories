@@ -19,6 +19,8 @@
 		BB5BCC7E297195B000FEB7E0 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC77297195B000FEB7E0 /* String+Localization.swift */; };
 		BB5BCC8B2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */; };
 		BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */; };
+		BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */; };
+		BB5BCC912971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC902971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib */; };
 		BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */; };
 		BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */; };
 		BB7E5E74296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E73296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift */; };
@@ -54,6 +56,8 @@
 		BB5BCC77297195B000FEB7E0 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingRepositoriesViewController.xib; sourceTree = "<group>"; };
 		BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styling.swift"; sourceTree = "<group>"; };
+		BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryShimmerTableViewCell.swift; sourceTree = "<group>"; };
+		BB5BCC902971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendingRepositoryShimmerTableViewCell.xib; sourceTree = "<group>"; };
 		BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendingRepositories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
 				BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */,
+				BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */,
+				BB5BCC902971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib */,
 				BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */,
 				BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */,
 			);
@@ -296,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB7E5E90296EEBDB00542C26 /* Assets.xcassets in Resources */,
+				BB5BCC912971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib in Resources */,
 				BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */,
 				BBD7923829703A170090C578 /* TrendingRepositoryTableViewCell.xib in Resources */,
 				BB7E5E91296EEBDB00542C26 /* LaunchScreen.storyboard in Resources */,
@@ -325,6 +332,7 @@
 				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
 				BB5BCC7E297195B000FEB7E0 /* String+Localization.swift in Sources */,
+				BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
 				BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */,
 				BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
