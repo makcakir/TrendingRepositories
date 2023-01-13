@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkManager {
     
-    enum ManagerErrors: Error {
+    enum NetworkError: Error {
         case invalidResponse
         case invalidStatusCode(Int)
     }
@@ -45,12 +45,12 @@ class NetworkManager {
             }
             
             guard let urlResponse = response as? HTTPURLResponse else {
-                return completionOnMain(.failure(ManagerErrors.invalidResponse))
+                return completionOnMain(.failure(NetworkError.invalidResponse))
             }
             
             let statusCode = urlResponse.statusCode
             if !(200..<300).contains(statusCode) {
-                return completionOnMain(.failure(ManagerErrors.invalidStatusCode(statusCode)))
+                return completionOnMain(.failure(NetworkError.invalidStatusCode(statusCode)))
             }
             
             guard let data = data else {

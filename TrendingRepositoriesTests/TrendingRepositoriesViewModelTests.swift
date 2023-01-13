@@ -13,34 +13,40 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     private var viewModel: TrendingRepositoriesViewModel!
     private var changes: [TrendingRepositoriesViewModel.Change] = []
     
-    override func setUpWithError() throws {
-        viewModel = TrendingRepositoriesViewModel()
-        viewModel.changeHandler = { [unowned self] change in
-            self.changes.append(change)
-        }
-    }
-    
     override func tearDownWithError() throws {
         viewModel = nil
         changes = []
     }
     
     func testFetchItemsSuccess() {
+        initializeViewModel(dataProcotol: TrendingRepositoriesSuccessMockService())
         viewModel.fetchRepositories()
         
         XCTAssertTrue(changes.count == 2)
         XCTAssertTrue(changes.removeFirst() == .loading)
-        XCTAssertTrue(changes.removeFirst() == .items)
+        XCTAssertTrue(changes.removeFirst() == .items(items: []))
         XCTAssertTrue(changes.isEmpty)
     }
     
     func testFetchItemsError() {
-        viewModel.fetchRepositories(forceError: true)
+        initializeViewModel(dataProcotol: TrendingRepositoriesErrorMockService())
+        viewModel.fetchRepositories()
         
         XCTAssertTrue(changes.count == 2)
         XCTAssertTrue(changes.removeFirst() == .loading)
         XCTAssertTrue(changes.removeFirst() == .error)
         XCTAssertTrue(changes.isEmpty)
     }
+}
+
+// MARK: - Helpers
+
+private extension TrendingRepositoriesViewModelTests {
     
+    func initializeViewModel(dataProcotol: TrendingRepositoriesDataProtocol) {
+        viewModel = TrendingRepositoriesViewModel(dataProtocol: dataProcotol)
+        viewModel.changeHandler = { [unowned self] change in
+            self.changes.append(change)
+        }
+    }
 }

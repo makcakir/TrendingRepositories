@@ -9,10 +9,25 @@ import Foundation
 
 class TrendingRepositoriesViewModel {
     
-    enum Change {
+    enum Change: Equatable {
         case error
         case items(items: [TrendingRepositoryPresentation])
         case loading
+        
+        static func == (
+            lhs: TrendingRepositoriesViewModel.Change, rhs: TrendingRepositoriesViewModel.Change
+        ) -> Bool {
+            switch (lhs, rhs) {
+            case (.error, .error):
+                return true
+            case (.items(let lhsItems), .items(let rhsItems)):
+                return lhsItems == rhsItems
+            case (.loading, .loading):
+                return true
+            default:
+                return false
+            }
+        }
     }
     
     private lazy var numberFormatter: NumberFormatter = {
