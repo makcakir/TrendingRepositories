@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
+final class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var avatarView: UIView!
     @IBOutlet private weak var titleView: UIView!

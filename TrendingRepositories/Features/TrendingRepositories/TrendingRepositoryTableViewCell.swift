@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingRepositoryTableViewCell: UITableViewCell {
+final class TrendingRepositoryTableViewCell: UITableViewCell {
     
     private enum Const {
         static let bordorWidth: CGFloat = 0.5

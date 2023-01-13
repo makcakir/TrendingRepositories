@@ -14,7 +14,7 @@ protocol TrendingRepositoriesDataProtocol {
     func fetchTrendingRepositories(completion: @escaping TrendingRepositoriesCompletion)
 }
 
-class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
+final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     
     private enum Const {
         static let trendingUrl = "https://api.github.com/search/repositories?q=language=+sort:stars"
@@ -28,7 +28,7 @@ class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     }
 }
 
-class TrendingRepositoriesSuccessMockService: TrendingRepositoriesDataProtocol {
+final class TrendingRepositoriesSuccessMockService: TrendingRepositoriesDataProtocol {
     
     func fetchTrendingRepositories(completion: @escaping TrendingRepositoriesCompletion) {
         let response = TrendingRepositoriesResponse(items: [])
@@ -36,7 +36,7 @@ class TrendingRepositoriesSuccessMockService: TrendingRepositoriesDataProtocol {
     }
 }
 
-class TrendingRepositoriesErrorMockService: TrendingRepositoriesDataProtocol {
+final class TrendingRepositoriesErrorMockService: TrendingRepositoriesDataProtocol {
     
     func fetchTrendingRepositories(completion: @escaping TrendingRepositoriesCompletion) {
         completion(.failure(NetworkManager.NetworkError.invalidResponse))

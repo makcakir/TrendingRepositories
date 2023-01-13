@@ -21,6 +21,7 @@
 		BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */; };
 		BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */; };
 		BB5BCC912971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC902971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib */; };
+		BB5BCC972971CC6800FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC962971CC6800FEB7E0 /* SDWebImage */; };
 		BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */; };
 		BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */; };
 		BB7E5E74296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E73296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift */; };
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5BCC972971CC6800FEB7E0 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,12 +129,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		BB5BCC952971CC6800FEB7E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BB7E5E50296EDF6700542C26 = {
 			isa = PBXGroup;
 			children = (
 				BB7E5E5B296EDF6700542C26 /* TrendingRepositories */,
 				BB7E5E72296EDF6900542C26 /* TrendingRepositoriesTests */,
 				BB7E5E5A296EDF6700542C26 /* Products */,
+				BB5BCC952971CC6800FEB7E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,6 +258,9 @@
 				BB7E5E71296EDF6900542C26 /* PBXTargetDependency */,
 			);
 			name = TrendingRepositoriesTests;
+			packageProductDependencies = (
+				BB5BCC962971CC6800FEB7E0 /* SDWebImage */,
+			);
 			productName = TrendingRepositoriesTests;
 			productReference = BB7E5E6F296EDF6900542C26 /* TrendingRepositoriesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -653,6 +666,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		BB5BCC962971CC6800FEB7E0 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

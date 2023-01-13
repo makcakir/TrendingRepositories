@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TrendingRepositoriesViewModel {
+final class TrendingRepositoriesViewModel {
     
     enum Change: Equatable {
         case error

@@ -31,7 +31,7 @@ extension LanguagePresentation: Equatable {
     }
 }
 
-class TrendingRepositoryPresentation {
+final class TrendingRepositoryPresentation {
     
     let owner: OwnerPresentation
     let title: String

@@ -8,7 +8,7 @@
 import Lottie
 import UIKit
 
-class TrendingRepositoriesViewController: UIViewController {
+final class TrendingRepositoriesViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var errorView: UIView!
@@ -16,6 +16,7 @@ class TrendingRepositoriesViewController: UIViewController {
     @IBOutlet private weak var errorMessageLabel: UILabel!
     @IBOutlet private weak var errorDescriptionLabel: UILabel!
     @IBOutlet private weak var retryButton: UIButton!
+    private let refreshControl = UIRefreshControl()
     
     var viewModel: TrendingRepositoriesViewModel!
     private var presentations: [TrendingRepositoryPresentation] = []
@@ -26,11 +27,11 @@ class TrendingRepositoriesViewController: UIViewController {
         
         setupSubviews()
         bindViewModel()
-        viewModel.fetchRepositories()
+        refreshData()
     }
     
     @IBAction func retryButtonTapped(_ sender: Any) {
-        viewModel.fetchRepositories()
+        refreshData()
     }
 }
 
@@ -58,6 +59,13 @@ private extension TrendingRepositoriesViewController {
         
         retryButton.setTitle("retry".localized(), for: .normal)
         retryButton.applyRoundedRectStyling()
+        
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshData() {
+        viewModel.fetchRepositories()
     }
     
     func bindViewModel() {
@@ -71,10 +79,12 @@ private extension TrendingRepositoriesViewController {
     func applyChange(_ change: TrendingRepositoriesViewModel.Change) {
         switch change {
         case .error:
+            refreshControl.endRefreshing()
             isLoading = false
             errorView.isHidden = false
             retryAnimationView.play()
         case .items(let items):
+            refreshControl.endRefreshing()
             isLoading = false
             tableView.isScrollEnabled = true
             presentations = items
