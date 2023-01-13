@@ -33,6 +33,12 @@ class TrendingRepositoryTableViewCell: UITableViewCell {
         languageColorView.makeCornersRounded()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        profileImageView.layer.borderColor = UIColor.label.cgColor
+    }
+    
     func fill(_ presentation: TrendingRepositoryPresentation) {
         profileImageView.setImage(
             presentation.owner.imageUrl, placeholderImage: #imageLiteral(resourceName: "avatar")
@@ -52,11 +58,5 @@ class TrendingRepositoryTableViewCell: UITableViewCell {
         }
         starCountLabel.text = presentation.starCount
         detailStackView.isHidden = !presentation.isExpanded
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        profileImageView.layer.borderColor = UIColor.label.cgColor
     }
 }

@@ -9,7 +9,16 @@
 /* Begin PBXBuildFile section */
 		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
 		BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC6429717FAB00FEB7E0 /* SDWebImage */; };
-		BB5BCC6729717FF000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC6629717FF000FEB7E0 /* UIImageView+ImageLoading.swift */; };
+		BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC69297193B700FEB7E0 /* Lottie */; };
+		BB5BCC6E2971953A00FEB7E0 /* retry.json in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC6D2971953A00FEB7E0 /* retry.json */; };
+		BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */; };
+		BB5BCC7A297195B000FEB7E0 /* UIColor+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC73297195B000FEB7E0 /* UIColor+Initialization.swift */; };
+		BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */; };
+		BB5BCC7C297195B000FEB7E0 /* UITableView+NibRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC75297195B000FEB7E0 /* UITableView+NibRegistering.swift */; };
+		BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */; };
+		BB5BCC7E297195B000FEB7E0 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC77297195B000FEB7E0 /* String+Localization.swift */; };
+		BB5BCC8B2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */; };
+		BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */; };
 		BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */; };
 		BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */; };
 		BB7E5E74296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E73296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift */; };
@@ -19,13 +28,8 @@
 		BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */; };
 		BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */; };
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
-		BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5EA8296F20A500542C26 /* String+Localization.swift */; };
-		BBD79230297038270090C578 /* UITableView+NibRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7922F297038270090C578 /* UITableView+NibRegistering.swift */; };
 		BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */; };
 		BBD7923829703A170090C578 /* TrendingRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */; };
-		BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923929704ADE0090C578 /* UIView+Styling.swift */; };
-		BBD7923C297065170090C578 /* UIColor+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923B297065170090C578 /* UIColor+Initialization.swift */; };
-		BBD7923F2970B6870090C578 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923E2970B6870090C578 /* NetworkManager.swift */; };
 		BBD792412970B94F0090C578 /* TrendingRepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +45,15 @@
 
 /* Begin PBXFileReference section */
 		BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesService.swift; sourceTree = "<group>"; };
-		BB5BCC6629717FF000FEB7E0 /* UIImageView+ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoading.swift"; sourceTree = "<group>"; };
+		BB5BCC6D2971953A00FEB7E0 /* retry.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = retry.json; sourceTree = "<group>"; };
+		BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BB5BCC73297195B000FEB7E0 /* UIColor+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Initialization.swift"; sourceTree = "<group>"; };
+		BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
+		BB5BCC75297195B000FEB7E0 /* UITableView+NibRegistering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+NibRegistering.swift"; sourceTree = "<group>"; };
+		BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoading.swift"; sourceTree = "<group>"; };
+		BB5BCC77297195B000FEB7E0 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingRepositoriesViewController.xib; sourceTree = "<group>"; };
+		BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styling.swift"; sourceTree = "<group>"; };
 		BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendingRepositories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,13 +68,8 @@
 		BB7E5EA3296F1CE500542C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA6296F1D0F00542C26 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BB7E5EA8296F20A500542C26 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
-		BBD7922F297038270090C578 /* UITableView+NibRegistering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+NibRegistering.swift"; sourceTree = "<group>"; };
 		BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingRepositoryTableViewCell.xib; sourceTree = "<group>"; };
-		BBD7923929704ADE0090C578 /* UIView+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
-		BBD7923B297065170090C578 /* UIColor+Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Initialization.swift"; sourceTree = "<group>"; };
-		BBD7923E2970B6870090C578 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */,
+				BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +93,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB5BCC6F297195B000FEB7E0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BB5BCC72297195B000FEB7E0 /* Extensions */,
+				BB5BCC70297195B000FEB7E0 /* Managers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BB5BCC70297195B000FEB7E0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		BB5BCC72297195B000FEB7E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BB5BCC77297195B000FEB7E0 /* String+Localization.swift */,
+				BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */,
+				BB5BCC73297195B000FEB7E0 /* UIColor+Initialization.swift */,
+				BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */,
+				BB5BCC75297195B000FEB7E0 /* UITableView+NibRegistering.swift */,
+				BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BB7E5E50296EDF6700542C26 = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +146,8 @@
 			children = (
 				BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */,
 				BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */,
-				BB7E5EA7296F208200542C26 /* Extensions */,
+				BB5BCC6F297195B000FEB7E0 /* Common */,
 				BB7E5E95296EFC9900542C26 /* Features */,
-				BBD7923D2970B6730090C578 /* Managers */,
 				BB7E5E8C296EEBDB00542C26 /* Resources */,
 				BB7E5E92296EEC0900542C26 /* SupportingFiles */,
 			);
@@ -128,6 +165,7 @@
 		BB7E5E8C296EEBDB00542C26 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BB5BCC6D2971953A00FEB7E0 /* retry.json */,
 				BB7E5E8D296EEBDB00542C26 /* Assets.xcassets */,
 				BB7E5E8E296EEBDB00542C26 /* LaunchScreen.storyboard */,
 				BB7E5EA4296F1CE500542C26 /* Localizable.strings */,
@@ -157,32 +195,13 @@
 				BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */,
 				BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */,
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
+				BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
 				BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */,
 				BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */,
 				BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */,
 			);
 			path = TrendingRepositories;
-			sourceTree = "<group>";
-		};
-		BB7E5EA7296F208200542C26 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				BB7E5EA8296F20A500542C26 /* String+Localization.swift */,
-				BBD7923B297065170090C578 /* UIColor+Initialization.swift */,
-				BB5BCC6629717FF000FEB7E0 /* UIImageView+ImageLoading.swift */,
-				BBD7922F297038270090C578 /* UITableView+NibRegistering.swift */,
-				BBD7923929704ADE0090C578 /* UIView+Styling.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		BBD7923D2970B6730090C578 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				BBD7923E2970B6870090C578 /* NetworkManager.swift */,
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +222,7 @@
 			name = TrendingRepositories;
 			packageProductDependencies = (
 				BB5BCC6429717FAB00FEB7E0 /* SDWebImage */,
+				BB5BCC69297193B700FEB7E0 /* Lottie */,
 			);
 			productName = TrendingRepositories;
 			productReference = BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */;
@@ -258,6 +278,7 @@
 			mainGroup = BB7E5E50296EDF6700542C26;
 			packageReferences = (
 				BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
 			projectDirPath = "";
@@ -278,6 +299,8 @@
 				BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */,
 				BBD7923829703A170090C578 /* TrendingRepositoryTableViewCell.xib in Resources */,
 				BB7E5E91296EEBDB00542C26 /* LaunchScreen.storyboard in Resources */,
+				BB5BCC6E2971953A00FEB7E0 /* retry.json in Resources */,
+				BB5BCC8B2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,16 +318,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */,
+				BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */,
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
-				BB5BCC6729717FF000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
+				BB5BCC7C297195B000FEB7E0 /* UITableView+NibRegistering.swift in Sources */,
 				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
+				BB5BCC7E297195B000FEB7E0 /* String+Localization.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
-				BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */,
-				BBD7923F2970B6870090C578 /* NetworkManager.swift in Sources */,
-				BBD79230297038270090C578 /* UITableView+NibRegistering.swift in Sources */,
-				BBD7923C297065170090C578 /* UIColor+Initialization.swift in Sources */,
-				BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */,
+				BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */,
+				BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
+				BB5BCC7A297195B000FEB7E0 /* UIColor+Initialization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
@@ -601,6 +625,14 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -608,6 +640,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		BB5BCC69297193B700FEB7E0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
