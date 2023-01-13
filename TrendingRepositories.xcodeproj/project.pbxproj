@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
 		BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */; };
 		BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */; };
 		BB7E5E74296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E73296EDF6900542C26 /* TrendingRepositoriesViewModelTests.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesService.swift; sourceTree = "<group>"; };
 		BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendingRepositories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */,
+				BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */,
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
 				BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */,
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
+				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
 				BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */,

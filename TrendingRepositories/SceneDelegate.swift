@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        let viewModel = TrendingRepositoriesViewModel()
+        let viewModel = TrendingRepositoriesViewModel(dataProtocol: TrendingRepositoriesService())
         let viewController = TrendingRepositoriesViewController()
         viewController.viewModel = viewModel
         let navigationController = UINavigationController(rootViewController: viewController)
