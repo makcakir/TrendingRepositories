@@ -22,6 +22,8 @@
 		BBD7923829703A170090C578 /* TrendingRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */; };
 		BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923929704ADE0090C578 /* UIView+Styling.swift */; };
 		BBD7923C297065170090C578 /* UIColor+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923B297065170090C578 /* UIColor+Initialization.swift */; };
+		BBD7923F2970B6870090C578 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD7923E2970B6870090C578 /* NetworkManager.swift */; };
+		BBD792412970B94F0090C578 /* TrendingRepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		BBD7923729703A170090C578 /* TrendingRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingRepositoryTableViewCell.xib; sourceTree = "<group>"; };
 		BBD7923929704ADE0090C578 /* UIView+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
 		BBD7923B297065170090C578 /* UIColor+Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Initialization.swift"; sourceTree = "<group>"; };
+		BBD7923E2970B6870090C578 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */,
 				BB7E5EA7296F208200542C26 /* Extensions */,
 				BB7E5E95296EFC9900542C26 /* Features */,
+				BBD7923D2970B6730090C578 /* Managers */,
 				BB7E5E8C296EEBDB00542C26 /* Resources */,
 				BB7E5E92296EEC0900542C26 /* SupportingFiles */,
 			);
@@ -143,6 +148,7 @@
 		BB7E5E96296EFC9900542C26 /* TrendingRepositories */ = {
 			isa = PBXGroup;
 			children = (
+				BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */,
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
 				BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */,
@@ -161,6 +167,14 @@
 				BBD7923929704ADE0090C578 /* UIView+Styling.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BBD7923D2970B6730090C578 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BBD7923E2970B6870090C578 /* NetworkManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,12 +285,14 @@
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
 				BBD7923A29704ADE0090C578 /* UIView+Styling.swift in Sources */,
+				BBD7923F2970B6870090C578 /* NetworkManager.swift in Sources */,
 				BBD79230297038270090C578 /* UITableView+NibRegistering.swift in Sources */,
 				BBD7923C297065170090C578 /* UIColor+Initialization.swift in Sources */,
 				BB7E5EA9296F20A500542C26 /* String+Localization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
+				BBD792412970B94F0090C578 /* TrendingRepositoriesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
