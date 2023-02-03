@@ -12,6 +12,9 @@ final class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
     @IBOutlet private weak var avatarView: UIView!
     @IBOutlet private weak var titleView: UIView!
     @IBOutlet private weak var detailView: UIView!
+    private var avatarViewGradientLayer: CAGradientLayer?
+    private var titleViewGradientLayer: CAGradientLayer?
+    private var detailViewGradientLayer: CAGradientLayer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +23,34 @@ final class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
         avatarView.makeCornersRounded()
         titleView.makeCornersRounded()
         detailView.makeCornersRounded()
-        avatarView.addShimmerAnimation()
-        titleView.addShimmerAnimation()
-        detailView.addShimmerAnimation()
+        addShimmerAnimationToSubviews()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        detailViewGradientLayer?.frame = detailView.bounds
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        removeShimmerAnimationFromSubviews()
+        addShimmerAnimationToSubviews()
+    }
+}
+
+private extension TrendingRepositoryShimmerTableViewCell {
+    
+    func addShimmerAnimationToSubviews() {
+        avatarViewGradientLayer = avatarView.addShimmerAnimation()
+        titleViewGradientLayer = titleView.addShimmerAnimation()
+        detailViewGradientLayer = detailView.addShimmerAnimation()
+    }
+    
+    func removeShimmerAnimationFromSubviews() {
+        avatarViewGradientLayer?.removeFromSuperlayer()
+        titleViewGradientLayer?.removeFromSuperlayer()
+        detailViewGradientLayer?.removeFromSuperlayer()
     }
 }
