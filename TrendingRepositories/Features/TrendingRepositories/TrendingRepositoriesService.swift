@@ -21,8 +21,7 @@ final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     }
     
     func fetchTrendingRepositories(completion: @escaping TrendingRepositoriesCompletion) {
-        let url = URL(string: Const.trendingUrl)!
-        NetworkManager.shared.request(fromURL: url) { (result: Result<TrendingRepositoriesResponse, Error>) in
+        NetworkManager.shared.request(Const.trendingUrl) { (result: Result<TrendingRepositoriesResponse, Error>) in
             completion(result)
         }
     }

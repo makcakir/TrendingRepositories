@@ -41,6 +41,7 @@ private extension TrendingRepositoriesViewController {
     
     enum Const {
         static let animationSpeed: CGFloat = 0.5
+        static let shimmerCellCount = 20
     }
     
     func setupSubviews() {
@@ -70,9 +71,7 @@ private extension TrendingRepositoriesViewController {
     
     func bindViewModel() {
         viewModel.changeHandler = { [unowned self] change in
-            DispatchQueue.main.async {
-                self.applyChange(change)
-            }
+            self.applyChange(change)
         }
     }
     
@@ -106,7 +105,7 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
     func tableView(
         _ tableView: UITableView, numberOfRowsInSection section: Int
     ) -> Int {
-        return isLoading ? 15 : presentations.count
+        return isLoading ? Const.shimmerCellCount : presentations.count
     }
     
     func tableView(
