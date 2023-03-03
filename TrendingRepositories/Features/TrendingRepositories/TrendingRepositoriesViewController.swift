@@ -19,8 +19,7 @@ final class TrendingRepositoriesViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     var viewModel: TrendingRepositoriesViewModel!
-    private var presentations: [TrendingRepositoryPresentation] = []
-    private var isLoading = false
+    private var presentationTypes: [TrendingRepositoriesViewModel.PresentationType] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +40,6 @@ private extension TrendingRepositoriesViewController {
     
     enum Const {
         static let animationSpeed: CGFloat = 0.5
-        static let shimmerCellCount = 20
     }
     
     func setupSubviews() {
@@ -79,19 +77,17 @@ private extension TrendingRepositoriesViewController {
         switch change {
         case .error:
             refreshControl.endRefreshing()
-            isLoading = false
             errorView.isHidden = false
             retryAnimationView.play()
         case .items(let items):
             refreshControl.endRefreshing()
-            isLoading = false
             tableView.isScrollEnabled = true
-            presentations = items
+            presentationTypes = items
             tableView.reloadData()
-        case .loading:
-            isLoading = true
+        case .loading(let items):
             tableView.isScrollEnabled = false
             errorView.isHidden = true
+            presentationTypes = items
             retryAnimationView.pause()
             tableView.reloadData()
         }
@@ -105,20 +101,19 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
     func tableView(
         _ tableView: UITableView, numberOfRowsInSection section: Int
     ) -> Int {
-        return isLoading ? Const.shimmerCellCount : presentations.count
+        return presentationTypes.count
     }
     
     func tableView(
         _ tableView: UITableView, cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        if isLoading {
-            let cell = tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryShimmerTableViewCell.self)
-            return cell
-        } else {
+        switch presentationTypes[indexPath.row] {
+        case .data(let presentation):
             let cell = tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryTableViewCell.self)
-            let presentation = presentations[indexPath.row]
             cell.fill(presentation)
             return cell
+        case .loading:
+            return tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryShimmerTableViewCell.self)
         }
     }
 }
@@ -128,15 +123,18 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
 extension TrendingRepositoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !isLoading {
+        switch presentationTypes[indexPath.row] {
+        case .data(let presentation):
             if let cell = self.tableView.cellForRow(at: indexPath) as? TrendingRepositoryTableViewCell {
-                let presentation = presentations[indexPath.row]
                 presentation.isExpanded.toggle()
                 cell.detailStackView.isHidden.toggle()
                 UIView.animate(withDuration: 0.3) {
                     self.tableView.performBatchUpdates(nil)
                 }
             }
+        case .loading:
+            // Left blank intentionally!
+            break
         }
     }
 }

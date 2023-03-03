@@ -9,25 +9,15 @@ import Foundation
 
 final class TrendingRepositoriesViewModel {
     
+    enum PresentationType: Equatable {
+        case data(item: TrendingRepositoryPresentation)
+        case loading
+    }
+    
     enum Change: Equatable {
         case error
-        case items(items: [TrendingRepositoryPresentation])
-        case loading
-        
-        static func == (
-            lhs: TrendingRepositoriesViewModel.Change, rhs: TrendingRepositoriesViewModel.Change
-        ) -> Bool {
-            switch (lhs, rhs) {
-            case (.error, .error):
-                return true
-            case (.items(let lhsItems), .items(let rhsItems)):
-                return lhsItems == rhsItems
-            case (.loading, .loading):
-                return true
-            default:
-                return false
-            }
-        }
+        case items(items: [PresentationType])
+        case loading(items: [PresentationType])
     }
     
     private lazy var numberFormatter: NumberFormatter = {
@@ -45,7 +35,8 @@ final class TrendingRepositoriesViewModel {
     }
     
     func fetchRepositories() {
-        changeHandler?(.loading)
+        let loadingItems = [PresentationType](repeating: .loading, count: Const.loadingItemCount)
+        changeHandler?(.loading(items: loadingItems))
         
         dataProtocol.fetchTrendingRepositories { [weak self] result in
             guard let self = self else {
@@ -54,7 +45,7 @@ final class TrendingRepositoriesViewModel {
             
             switch result {
             case .success(let response):
-                let items = response.items.map {
+                let dataItems = response.items.map {
                     let owner = OwnerPresentation(
                         imageUrl: $0.owner.avatarUrl, name:  $0.owner.login
                     )
@@ -65,12 +56,13 @@ final class TrendingRepositoriesViewModel {
                         )
                     }
                     let count = self.numberFormatter.string(from: NSNumber(value: $0.starCount))
-                    return TrendingRepositoryPresentation(
+                    let item = TrendingRepositoryPresentation(
                         owner: owner, title: $0.name, description: $0.description,
                         language: language, starCount: count ?? "", isExpanded: false
                     )
+                    return PresentationType.data(item: item)
                 }
-                self.changeHandler?(.items(items: items))
+                self.changeHandler?(.items(items: dataItems))
             case .failure(_):
                 self.changeHandler?(.error)
             }
@@ -83,6 +75,7 @@ final class TrendingRepositoriesViewModel {
 private extension TrendingRepositoriesViewModel {
     
     enum Const {
+        static let loadingItemCount = 20
         static let colorsDictionary = [
             "C": "#555555", "C#": "#178600", "C++": "#F34B7D", "CSS": "#563D7C", "Dart": "#00B4AB",
             "Elixir": "#6E4A7E", "Go": "#00ADD8", "HTML": "#E34C26", "Java": "#B07219",
