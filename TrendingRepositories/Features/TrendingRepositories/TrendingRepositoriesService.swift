@@ -26,18 +26,3 @@ final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
         }
     }
 }
-
-final class TrendingRepositoriesSuccessMockService: TrendingRepositoriesDataProtocol {
-    
-    func fetchTrendingRepositories(completion: @escaping TrendingRepositoriesCompletion) {
-        let response = TrendingRepositoriesResponse(items: [])
-        completion(.success(response))
-    }
-}
-
-final class TrendingRepositoriesErrorMockService: TrendingRepositoriesDataProtocol {
-    
-    func fetchTrendingRepositories(completion: @escaping TrendingRepositoriesCompletion) {
-        completion(.failure(NetworkManager.NetworkError.invalidResponse))
-    }
-}

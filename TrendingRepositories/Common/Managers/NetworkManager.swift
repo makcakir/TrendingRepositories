@@ -8,12 +8,7 @@
 import Alamofire
 import Foundation
 
-class NetworkManager {
-    
-    enum NetworkError: Error {
-        case invalidResponse
-        case invalidStatusCode(Int)
-    }
+final class NetworkManager {
     
     enum Method: String {
         case get

@@ -78,7 +78,10 @@ private extension TrendingRepositoriesViewController {
     }
     
     func bindViewModel() {
-        viewModel.changeHandler = { [unowned self] change in
+        viewModel.changeHandler = { [weak self] change in
+            guard let self = self else {
+                return
+            }
             self.applyChange(change)
         }
     }
