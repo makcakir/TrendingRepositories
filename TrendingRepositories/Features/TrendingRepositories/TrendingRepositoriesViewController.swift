@@ -18,8 +18,17 @@ final class TrendingRepositoriesViewController: UIViewController {
     @IBOutlet private weak var retryButton: UIButton!
     private let refreshControl = UIRefreshControl()
     
-    var viewModel: TrendingRepositoriesViewModel!
+    private let viewModel: TrendingRepositoriesViewModel
     private var presentationTypes: [TrendingRepositoriesViewModel.PresentationType] = []
+    
+    init(viewModel: TrendingRepositoriesViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +48,8 @@ final class TrendingRepositoriesViewController: UIViewController {
 private extension TrendingRepositoriesViewController {
     
     enum Const {
-        static let animationSpeed: CGFloat = 0.5
+        static let lottieAnimationSpeed: CGFloat = 0.5
+        static let animationDuration: CGFloat = 0.3
     }
     
     func setupSubviews() {
@@ -50,7 +60,7 @@ private extension TrendingRepositoriesViewController {
         
         retryAnimationView.contentMode = .scaleAspectFit
         retryAnimationView.loopMode = .loop
-        retryAnimationView.animationSpeed = Const.animationSpeed
+        retryAnimationView.animationSpeed = Const.lottieAnimationSpeed
         
         errorMessageLabel.text = "errorMessage".localized()
         
@@ -82,14 +92,26 @@ private extension TrendingRepositoriesViewController {
         case .items(let items):
             refreshControl.endRefreshing()
             tableView.isScrollEnabled = true
+            tableView.isUserInteractionEnabled = true
             presentationTypes = items
             tableView.reloadData()
         case .loading(let items):
             tableView.isScrollEnabled = false
+            tableView.isUserInteractionEnabled = false
             errorView.isHidden = true
             presentationTypes = items
             retryAnimationView.pause()
             tableView.reloadData()
+        case .selected(let item, let index):
+            let indexPath = IndexPath(row: index, section: 0)
+            guard let cell = tableView.cellForRow(at: indexPath) as? TrendingRepositoryTableViewCell else {
+                return
+            }
+            cell.toggleExpanded()
+            presentationTypes[index] = item
+            UIView.animate(withDuration: Const.animationDuration) {
+                self.tableView.performBatchUpdates(nil)
+            }
         }
     }
 }
@@ -123,18 +145,6 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
 extension TrendingRepositoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch presentationTypes[indexPath.row] {
-        case .data(let presentation):
-            if let cell = self.tableView.cellForRow(at: indexPath) as? TrendingRepositoryTableViewCell {
-                presentation.isExpanded.toggle()
-                cell.detailStackView.isHidden.toggle()
-                UIView.animate(withDuration: 0.3) {
-                    self.tableView.performBatchUpdates(nil)
-                }
-            }
-        case .loading:
-            // Left blank intentionally!
-            break
-        }
+        viewModel.repositorySelectedAt(indexPath.row)
     }
 }

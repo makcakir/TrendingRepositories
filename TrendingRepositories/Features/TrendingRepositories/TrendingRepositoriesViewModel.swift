@@ -18,6 +18,7 @@ final class TrendingRepositoriesViewModel {
         case error
         case items(items: [PresentationType])
         case loading(items: [PresentationType])
+        case selected(item: PresentationType, index: Int)
     }
     
     private lazy var numberFormatter: NumberFormatter = {
@@ -27,6 +28,8 @@ final class TrendingRepositoriesViewModel {
     }()
     
     private let dataProtocol: TrendingRepositoriesDataProtocol
+    private var expandStates: [Bool] = []
+    private var repositories: [Repository] = []
     
     var changeHandler: ((Change) -> Void)?
     
@@ -45,21 +48,10 @@ final class TrendingRepositoriesViewModel {
             
             switch result {
             case .success(let response):
+                self.repositories = response.items
+                self.expandStates = [Bool](repeating: false, count: response.items.count)
                 let dataItems = response.items.map {
-                    let owner = OwnerPresentation(
-                        imageUrl: $0.owner.avatarUrl, name:  $0.owner.login
-                    )
-                    var language: LanguagePresentation? = nil
-                    if let lang = $0.language {
-                        language = LanguagePresentation(
-                            name: lang, colorHex: Const.colorsDictionary[lang] ?? "FFFFFF"
-                        )
-                    }
-                    let count = self.numberFormatter.string(from: NSNumber(value: $0.starCount))
-                    let item = TrendingRepositoryPresentation(
-                        owner: owner, title: $0.name, description: $0.description,
-                        language: language, starCount: count ?? "", isExpanded: false
-                    )
+                    let item = self.createPresentationFrom($0, isExpanded: false)
                     return PresentationType.data(item: item)
                 }
                 self.changeHandler?(.items(items: dataItems))
@@ -67,6 +59,15 @@ final class TrendingRepositoriesViewModel {
                 self.changeHandler?(.error)
             }
         }
+    }
+    
+    func repositorySelectedAt(_ index: Int) {
+        guard index < expandStates.count else {
+            return
+        }
+        expandStates[index].toggle()
+        let item = createPresentationFrom(repositories[index], isExpanded: expandStates[index])
+        changeHandler?(.selected(item: PresentationType.data(item: item), index: index))
     }
 }
 
@@ -86,5 +87,24 @@ private extension TrendingRepositoriesViewModel {
             "SQL": "#E38C00", "Swift": "#F05138", "TypeScript": "#3178C6", "V": "#4F87C4",
             "Vue": "#41B883", "Zig": "#EC915C"
         ]
+    }
+    
+    private func createPresentationFrom(
+        _ repository: Repository, isExpanded: Bool
+    ) -> TrendingRepositoryPresentation {
+        let owner = OwnerPresentation(
+            imageUrl: repository.owner.avatarUrl, name:  repository.owner.login
+        )
+        var language: LanguagePresentation? = nil
+        if let lang = repository.language {
+            language = LanguagePresentation(
+                name: lang, colorHex: Const.colorsDictionary[lang] ?? "FFFFFF"
+            )
+        }
+        let count = numberFormatter.string(from: NSNumber(value: repository.starCount))
+        return TrendingRepositoryPresentation(
+            owner: owner, title: repository.name, description: repository.description,
+            language: language, starCount: count ?? "", isExpanded: isExpanded
+        )
     }
 }

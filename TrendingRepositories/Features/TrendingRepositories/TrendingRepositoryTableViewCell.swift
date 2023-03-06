@@ -16,7 +16,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var ownerNameLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private(set) weak var detailStackView: UIStackView!
+    @IBOutlet private weak var detailStackView: UIStackView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var languageContentView: UIView!
     @IBOutlet private weak var languageColorView: UIView!
@@ -58,5 +58,9 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         }
         starCountLabel.text = presentation.starCount
         detailStackView.isHidden = !presentation.isExpanded
+    }
+    
+    func toggleExpanded() {
+        detailStackView.isHidden.toggle()
     }
 }

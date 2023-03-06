@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         let viewModel = TrendingRepositoriesViewModel(dataProtocol: TrendingRepositoriesService())
-        let viewController = TrendingRepositoriesViewController()
-        viewController.viewModel = viewModel
+        let viewController = TrendingRepositoriesViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
         
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
