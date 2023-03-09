@@ -22,6 +22,7 @@
 		BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */; };
 		BB5BCC912971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC902971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib */; };
 		BB5BCC972971CC6800FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC962971CC6800FEB7E0 /* SDWebImage */; };
+		BB7C113229BA872D00CDF578 /* AlamofireNetworkActivityLogger in Frameworks */ = {isa = PBXBuildFile; productRef = BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */; };
 		BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */; };
 		BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5E296EDF6700542C26 /* SceneDelegate.swift */; };
 		BB7E5E90296EEBDB00542C26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5E8D296EEBDB00542C26 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBFF7765298D70AB00E8AECC /* Alamofire in Frameworks */,
+				BB7C113229BA872D00CDF578 /* AlamofireNetworkActivityLogger in Frameworks */,
 				BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */,
 				BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */,
 			);
@@ -261,6 +263,7 @@
 				BB5BCC6429717FAB00FEB7E0 /* SDWebImage */,
 				BB5BCC69297193B700FEB7E0 /* Lottie */,
 				BBFF7764298D70AB00E8AECC /* Alamofire */,
+				BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */,
 			);
 			productName = TrendingRepositories;
 			productReference = BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */;
@@ -321,6 +324,7 @@
 				BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
 			);
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
 			projectDirPath = "";
@@ -678,6 +682,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/konkab/AlamofireNetworkActivityLogger";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -703,6 +715,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */;
+			productName = AlamofireNetworkActivityLogger;
 		};
 		BBFF7764298D70AB00E8AECC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
