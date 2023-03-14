@@ -22,6 +22,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
     @IBOutlet private weak var languageColorView: UIView!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var starCountLabel: UILabel!
+    @IBOutlet private weak var indexLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,25 +32,32 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         profileImageView.layer.borderColor = UIColor.label.cgColor
         profileImageView.layer.borderWidth = Const.bordorWidth
         languageColorView.makeCornersRounded()
+        languageColorView.layer.borderColor = UIColor.label.cgColor
+        languageColorView.layer.borderWidth = Const.bordorWidth
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         profileImageView.layer.borderColor = UIColor.label.cgColor
+        languageColorView.layer.borderColor = UIColor.label.cgColor
     }
     
     func fill(_ presentation: TrendingRepositoryPresentation) {
         profileImageView.setImage(
             presentation.owner.imageUrl, placeholderImage: #imageLiteral(resourceName: "avatar")
         )
+        indexLabel.text = presentation.index
         ownerNameLabel.text = presentation.owner.name
         titleLabel.text = presentation.title
         descriptionLabel.text = presentation.description
         if let language = presentation.language {
             languageContentView.isHidden = false
-            let color = UIColor(hex: language.colorHex)
-            languageColorView.backgroundColor = color
+            if let colorHex = language.colorHex {
+                languageColorView.backgroundColor = UIColor(hex: colorHex)
+            } else {
+                languageColorView.backgroundColor = nil
+            }
             languageLabel.text = language.name
         } else {
             languageContentView.isHidden = true

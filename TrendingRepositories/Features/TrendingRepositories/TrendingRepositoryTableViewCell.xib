@@ -122,19 +122,28 @@
                             </stackView>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIy-C6-2lF">
+                        <rect key="frame" x="357" y="16" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="6Xp-Iz-frX" firstAttribute="leading" secondItem="WGe-gb-5x0" secondAttribute="leading" constant="36" id="5YC-XA-Gmq"/>
                     <constraint firstItem="ahL-aN-GOZ" firstAttribute="top" secondItem="WGe-gb-5x0" secondAttribute="top" constant="16" id="F2y-NS-2gA"/>
                     <constraint firstAttribute="bottom" secondItem="ahL-aN-GOZ" secondAttribute="bottom" constant="16" id="VW8-aw-YDv"/>
                     <constraint firstAttribute="trailing" secondItem="ahL-aN-GOZ" secondAttribute="trailing" constant="36" id="eft-mC-DI8"/>
+                    <constraint firstItem="WIy-C6-2lF" firstAttribute="top" secondItem="ahL-aN-GOZ" secondAttribute="top" id="kBX-fo-cKy"/>
                     <constraint firstItem="ahL-aN-GOZ" firstAttribute="leading" secondItem="6Xp-Iz-frX" secondAttribute="trailing" constant="16" id="ro3-q4-Y2a"/>
                     <constraint firstItem="6Xp-Iz-frX" firstAttribute="top" secondItem="ahL-aN-GOZ" secondAttribute="top" constant="6" id="tF4-GI-6uK"/>
+                    <constraint firstItem="WIy-C6-2lF" firstAttribute="trailing" secondItem="ahL-aN-GOZ" secondAttribute="trailing" id="vdu-zU-BCm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="f06-HM-Dfk" id="s6N-d0-Z5X"/>
                 <outlet property="detailStackView" destination="5M9-Gy-bfL" id="0zt-3v-c2S"/>
+                <outlet property="indexLabel" destination="WIy-C6-2lF" id="FRw-BI-HhK"/>
                 <outlet property="languageColorView" destination="gyG-R3-rVx" id="4YN-fS-vYr"/>
                 <outlet property="languageContentView" destination="uSD-Zh-FeB" id="ftz-xK-qyO"/>
                 <outlet property="languageLabel" destination="sQQ-2l-Wzf" id="Z5S-Uh-IBe"/>

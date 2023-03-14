@@ -35,4 +35,10 @@ struct Repository: Decodable {
 
 struct TrendingRepositoriesResponse: Decodable {
     let items: [Repository]
+    let totalCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case items
+        case totalCount = "total_count"
+    }
 }

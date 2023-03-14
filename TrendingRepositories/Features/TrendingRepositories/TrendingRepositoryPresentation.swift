@@ -14,10 +14,11 @@ struct OwnerPresentation: Equatable {
 
 struct LanguagePresentation: Equatable {
     let name: String
-    let colorHex: String
+    let colorHex: String?
 }
 
 struct TrendingRepositoryPresentation: Equatable {
+    let index: String
     let owner: OwnerPresentation
     let title: String
     let description: String

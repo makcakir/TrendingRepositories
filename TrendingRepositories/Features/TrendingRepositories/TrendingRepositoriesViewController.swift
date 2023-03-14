@@ -55,8 +55,16 @@ private extension TrendingRepositoriesViewController {
     func setupSubviews() {
         title = "trending".localized()
         
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         tableView.registerNibReusableCell(TrendingRepositoryShimmerTableViewCell.self)
         tableView.registerNibReusableCell(TrendingRepositoryTableViewCell.self)
+        
+        let frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44.0)
+        let activityIndicatorView = UIActivityIndicatorView(frame: frame)
+        activityIndicatorView.startAnimating()
+        tableView.tableFooterView = activityIndicatorView
         
         retryAnimationView.contentMode = .scaleAspectFit
         retryAnimationView.loopMode = .loop
@@ -68,9 +76,6 @@ private extension TrendingRepositoriesViewController {
         
         retryButton.setTitle("retry".localized(), for: .normal)
         retryButton.applyRoundedRectStyling()
-        
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        tableView.refreshControl = refreshControl
     }
     
     @objc func refreshData() {
@@ -92,11 +97,16 @@ private extension TrendingRepositoriesViewController {
             refreshControl.endRefreshing()
             errorView.isHidden = false
             retryAnimationView.play()
+            tableView.setContentOffset(.zero, animated: false)
         case .items(let items):
             refreshControl.endRefreshing()
             tableView.isScrollEnabled = true
             tableView.isUserInteractionEnabled = true
-            presentationTypes = items
+            if case .loading = presentationTypes.first {
+                presentationTypes = items
+            } else {
+                presentationTypes.append(contentsOf: items)
+            }
             tableView.reloadData()
         case .loading(let items):
             tableView.isScrollEnabled = false
@@ -105,6 +115,8 @@ private extension TrendingRepositoriesViewController {
             presentationTypes = items
             retryAnimationView.pause()
             tableView.reloadData()
+        case .paginationEnded:
+            tableView.tableFooterView = nil
         case .selected(let item, let index):
             let indexPath = IndexPath(row: index, section: 0)
             guard let cell = tableView.cellForRow(at: indexPath) as? TrendingRepositoryTableViewCell else {
@@ -148,6 +160,15 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
 extension TrendingRepositoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.repositorySelectedAt(indexPath.row)
+        viewModel.selectRepositoryAt(indexPath.row)
+    }
+    
+    func tableView(
+        _ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath
+    ) {
+        guard indexPath.row == presentationTypes.count - 1 else {
+            return
+        }
+        viewModel.fetchNextPage()
     }
 }

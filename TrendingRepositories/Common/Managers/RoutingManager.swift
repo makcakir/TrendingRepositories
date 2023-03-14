@@ -9,10 +9,16 @@ import UIKit
 
 final class RoutingManager {
     
+    private enum Const {
+        static let pageItemCount = 20
+    }
+    
     static let shared = RoutingManager()
     
     func initializeWindow(windowScene: UIWindowScene) -> UIWindow {
-        let viewModel = TrendingRepositoriesViewModel(dataProtocol: TrendingRepositoriesService())
+        let viewModel = TrendingRepositoriesViewModel(
+            dataProtocol: TrendingRepositoriesService(), pageItemCount: Const.pageItemCount
+        )
         let viewController = TrendingRepositoriesViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
         

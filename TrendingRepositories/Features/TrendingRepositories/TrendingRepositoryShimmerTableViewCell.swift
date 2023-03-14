@@ -12,9 +12,11 @@ final class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
     @IBOutlet private weak var avatarView: UIView!
     @IBOutlet private weak var titleView: UIView!
     @IBOutlet private weak var detailView: UIView!
+    @IBOutlet private weak var indexView: UIView!
     private var avatarViewGradientLayer: CAGradientLayer?
     private var titleViewGradientLayer: CAGradientLayer?
     private var detailViewGradientLayer: CAGradientLayer?
+    private var indexViewGradientLayer: CAGradientLayer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +25,7 @@ final class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
         avatarView.makeCornersRounded()
         titleView.makeCornersRounded()
         detailView.makeCornersRounded()
+        indexView.makeCornersRounded()
         addShimmerAnimationToSubviews()
     }
     
@@ -46,11 +49,13 @@ private extension TrendingRepositoryShimmerTableViewCell {
         avatarViewGradientLayer = avatarView.addShimmerAnimation()
         titleViewGradientLayer = titleView.addShimmerAnimation()
         detailViewGradientLayer = detailView.addShimmerAnimation()
+        indexViewGradientLayer = indexView.addShimmerAnimation()
     }
     
     func removeShimmerAnimationFromSubviews() {
         avatarViewGradientLayer?.removeFromSuperlayer()
         titleViewGradientLayer?.removeFromSuperlayer()
         detailViewGradientLayer?.removeFromSuperlayer()
+        indexViewGradientLayer?.removeFromSuperlayer()
     }
 }

@@ -55,19 +55,30 @@
                             </view>
                         </subviews>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiC-Ki-pMp">
+                        <rect key="frame" x="332" y="16" width="25" height="17"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Efg-Jx-TCT"/>
+                            <constraint firstAttribute="width" constant="25" id="PWa-uK-IHk"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ahL-aN-GOZ" firstAttribute="centerY" secondItem="WGe-gb-5x0" secondAttribute="centerY" id="Iki-Ei-MIR"/>
+                    <constraint firstItem="EiC-Ki-pMp" firstAttribute="top" secondItem="ahL-aN-GOZ" secondAttribute="top" id="Ke6-RE-flG"/>
                     <constraint firstItem="Wkj-J2-PRL" firstAttribute="leading" secondItem="WGe-gb-5x0" secondAttribute="leading" constant="36" id="Pnr-CZ-C0f"/>
                     <constraint firstItem="Wkj-J2-PRL" firstAttribute="top" secondItem="WGe-gb-5x0" secondAttribute="top" constant="22" id="bCo-KI-WWG"/>
                     <constraint firstAttribute="trailing" secondItem="ahL-aN-GOZ" secondAttribute="trailing" constant="36" id="eft-mC-DI8"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Wkj-J2-PRL" secondAttribute="bottom" constant="22" id="goy-OC-PPH"/>
                     <constraint firstItem="ahL-aN-GOZ" firstAttribute="leading" secondItem="Wkj-J2-PRL" secondAttribute="trailing" constant="16" id="mCU-7s-KCd"/>
+                    <constraint firstItem="EiC-Ki-pMp" firstAttribute="trailing" secondItem="ahL-aN-GOZ" secondAttribute="trailing" id="mUZ-2A-mg3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarView" destination="Wkj-J2-PRL" id="xzg-3U-0CX"/>
                 <outlet property="detailView" destination="1mM-6v-5hZ" id="1Cf-ag-r0a"/>
+                <outlet property="indexView" destination="EiC-Ki-pMp" id="LsV-hk-o0R"/>
                 <outlet property="titleView" destination="def-vN-Xbn" id="OQU-mt-pRE"/>
             </connections>
             <point key="canvasLocation" x="122.90076335877862" y="-168.3098591549296"/>

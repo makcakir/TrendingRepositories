@@ -18,6 +18,7 @@ final class TrendingRepositoriesViewModel {
         case error
         case items(items: [PresentationType])
         case loading(items: [PresentationType])
+        case paginationEnded
         case selected(item: PresentationType, index: Int)
     }
     
@@ -28,45 +29,43 @@ final class TrendingRepositoriesViewModel {
     }()
     
     private let dataProtocol: TrendingRepositoriesDataProtocol
+    private let pageItemCount: Int
     private var expandStates: [Bool] = []
     private var repositories: [Repository] = []
+    private var isFetching: Bool = false
+    private var totalCount = 0
     
     var changeHandler: ((Change) -> Void)?
     
-    init(dataProtocol: TrendingRepositoriesDataProtocol) {
+    init(dataProtocol: TrendingRepositoriesDataProtocol, pageItemCount: Int) {
         self.dataProtocol = dataProtocol
+        self.pageItemCount = pageItemCount
     }
     
     func fetchRepositories() {
-        let loadingItems = [PresentationType](repeating: .loading, count: Const.loadingItemCount)
+        expandStates = []
+        repositories = []
+        let loadingItems = [PresentationType](repeating: .loading, count: pageItemCount)
         changeHandler?(.loading(items: loadingItems))
-        
-        dataProtocol.fetchTrendingRepositories { [weak self] result in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
-            case .success(let response):
-                self.repositories = response.items
-                self.expandStates = [Bool](repeating: false, count: response.items.count)
-                let dataItems = response.items.map {
-                    let item = self.createPresentationFrom($0, isExpanded: false)
-                    return PresentationType.data(item: item)
-                }
-                self.changeHandler?(.items(items: dataItems))
-            case .failure(_):
-                self.changeHandler?(.error)
-            }
-        }
+        fetchRepositories(page: 1)
     }
     
-    func repositorySelectedAt(_ index: Int) {
+    func fetchNextPage() {
+        guard !isFetching, repositories.count < totalCount else {
+            return
+        }
+        let currentPage = repositories.count / pageItemCount
+        fetchRepositories(page: currentPage + 1)
+    }
+    
+    func selectRepositoryAt(_ index: Int) {
         guard index < expandStates.count else {
             return
         }
         expandStates[index].toggle()
-        let item = createPresentationFrom(repositories[index], isExpanded: expandStates[index])
+        let item = createPresentationFrom(
+            repositories[index], index: index, isExpanded: expandStates[index]
+        )
         changeHandler?(.selected(item: PresentationType.data(item: item), index: index))
     }
 }
@@ -76,35 +75,74 @@ final class TrendingRepositoriesViewModel {
 private extension TrendingRepositoriesViewModel {
     
     enum Const {
-        static let loadingItemCount = 20
         static let colorsDictionary = [
-            "C": "#555555", "C#": "#178600", "C++": "#F34B7D", "CSS": "#563D7C", "Dart": "#00B4AB",
-            "Elixir": "#6E4A7E", "Go": "#00ADD8", "HTML": "#E34C26", "Java": "#B07219",
-            "JavaScript": "#F1E05A", "Julia": "#A270BA", "Jupyter Notebook": "#DA5B0B",
-            "Kotlin": "#A97BFF", "MATLAB": "#E16737", "Objective-C": "#438EFF", "Perl": "#0298C3",
-            "PHP": "#4F5D95", "PowerShell": "#012456", "Python": "#3572A5", "R": "#198CE7",
-            "Ruby": "#701516", "Rust": "#DEA584", "Scala": "#C22D40", "Shell": "#89E051",
-            "SQL": "#E38C00", "Swift": "#F05138", "TypeScript": "#3178C6", "V": "#4F87C4",
-            "Vue": "#41B883", "Zig": "#EC915C"
+            "Agda": "#315665", "Assembly": "#6E4C13", "Ballerina": "#FF5000", "Bicep": "#519ABA",
+            "C": "#555555", "C#": "#178600", "C++": "#F34B7D", "Chapel": "#8DC63F", "Clojure": "#DB5855",
+            "CMake": "#DA3434", "CoffeeScript": "#244776", "Common Lisp": "#3FB68B", "Coq": "#d0b68c",
+            "Crystal": "#000100", "CSS": "#563D7C", "D": "#BA595E", "Dart": "#00B4AB", "Dockerfile": "#384D54",
+            "Elixir": "#6E4A7E", "Emacs Lisp": "#C065DB", "Erlang": "#B83998", "F#": "#B845FC", "F*": "#572E30",
+            "Factor": "#636746", "Fennel": "#FFF3D7", "GDScript": "#355570", "Gherkin": "#5B2063",
+            "GLSL": "#5686A5", "Go": "#00ADD8", "Groovy": "#4298B8", "Hack": "#878787", "Haskell": "#5E5086",
+            "HTML": "#E34C26", "Idris": "#B30000", "Java": "#B07219", "JavaScript": "#F1E05A",
+            "Jsonnet": "#0064BD", "Julia": "#A270BA", "Jupyter Notebook": "#DA5B0B", "Kotlin": "#A97BFF",
+            "LiveScript": "#499886", "Lua": "#000080", "Markdown": "#083FA1", "MATLAB": "#E16737",
+            "Makefile": "#427819", "Mathematica": "#DD1100", "Mustache": "#724B3B", "Nim": "#FFC200",
+            "Objective-C": "#438EFF", "OCaml": "#3BE133", "Odin": "#60AFFE", "P4": "#7055B5", "Perl": "#0298C3",
+            "PHP": "#4F5D95", "PowerShell": "#012456", "Processing": "#0096D8", "Python": "#3572A5",
+            "R": "#198CE7", "Red": "#F50000", "ReScript": "#ED5051", "Ruby": "#701516", "Rust": "#DEA584",
+            "Scala": "#C22D40", "Scheme": "#1E4AEC", "Shell": "#89E051", "Smalltalk": "#596706",
+            "Solidity": "#AA6746", "SQL": "#E38C00", "Standard ML": "#DC566D", "Starlark": "#76D275",
+            "Swift": "#F05138", "TeX": "#3D6117", "TypeScript": "#3178C6", "V": "#4F87C4",
+            "Vim Script": "#199F4B", "Vue": "#41B883", "WebAssembly": "#04133B", "Wren": "#383838",
+            "YASnippet": "#32AB90", "Zig": "#EC915C"
         ]
     }
     
-    private func createPresentationFrom(
-        _ repository: Repository, isExpanded: Bool
+    func fetchRepositories(page: Int) {
+        isFetching = true
+        dataProtocol.fetchTrendingRepositories(perPage: pageItemCount, page: page) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            self.isFetching = false
+            switch result {
+            case .success(let response):
+                self.totalCount = response.totalCount
+                let dataItems = response.items.map {
+                    let item = self.createPresentationFrom(
+                        $0, index: self.repositories.count, isExpanded: false
+                    )
+                    self.repositories.append($0)
+                    self.expandStates.append(item.isExpanded)
+                    return PresentationType.data(item: item)
+                }
+                self.changeHandler?(.items(items: dataItems))
+                if self.repositories.count >= self.totalCount {
+                    self.changeHandler?(.paginationEnded)
+                }
+            case .failure(_):
+                self.changeHandler?(.error)
+            }
+        }
+    }
+    
+    func createPresentationFrom(
+        _ repository: Repository, index: Int, isExpanded: Bool
     ) -> TrendingRepositoryPresentation {
         let owner = OwnerPresentation(
             imageUrl: repository.owner.avatarUrl, name:  repository.owner.login
         )
-        var language: LanguagePresentation? = nil
-        if let lang = repository.language {
-            language = LanguagePresentation(
-                name: lang, colorHex: Const.colorsDictionary[lang] ?? "FFFFFF"
+        var languagePresentation: LanguagePresentation? = nil
+        if let language = repository.language {
+            languagePresentation = LanguagePresentation(
+                name: language, colorHex: Const.colorsDictionary[language]
             )
         }
         let count = numberFormatter.string(from: NSNumber(value: repository.starCount))
+        let index = "#" + String(index + 1)
         return TrendingRepositoryPresentation(
-            owner: owner, title: repository.name, description: repository.description,
-            language: language, starCount: count ?? "", isExpanded: isExpanded
+            index: index, owner: owner, title: repository.name, description: repository.description,
+            language: languagePresentation, starCount: count ?? "", isExpanded: isExpanded
         )
     }
 }

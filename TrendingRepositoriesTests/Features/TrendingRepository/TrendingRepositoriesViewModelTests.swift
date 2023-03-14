@@ -18,7 +18,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         try super.setUpWithError()
         
         fakeService = TrendingRepositoriesFakeService()
-        viewModel = TrendingRepositoriesViewModel(dataProtocol: fakeService)
+        viewModel = TrendingRepositoriesViewModel(dataProtocol: fakeService, pageItemCount: 2)
         viewModel.changeHandler = { [unowned self] change in
             self.changes.append(change)
         }
@@ -33,7 +33,6 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testLoadingState() throws {
-        fakeService.setupErrorData()
         viewModel.fetchRepositories()
         
         XCTAssertTrue(changes.count == 2)
@@ -43,7 +42,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
             XCTFail("Expected change is \".loading\", received \".\(change)\"")
             return
         }
-        XCTAssertTrue(items.count == 20)
+        XCTAssertTrue(items.count == 2)
         XCTAssertTrue(items.allSatisfy { $0 == .loading })
         
         // .error change ignored intentionally!
@@ -53,7 +52,6 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testFetchRepositoriesError() throws {
-        fakeService.setupErrorData()
         viewModel.fetchRepositories()
         
         XCTAssertTrue(changes.count == 2)
@@ -121,7 +119,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         
         XCTAssertTrue(changes.isEmpty)
         
-        viewModel.repositorySelectedAt(0)
+        viewModel.selectRepositoryAt(0)
         
         XCTAssertTrue(changes.count == 1)
         
@@ -138,7 +136,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         XCTAssertTrue(presentation.isExpanded)
         XCTAssertTrue(changes.isEmpty)
         
-        viewModel.repositorySelectedAt(0)
+        viewModel.selectRepositoryAt(0)
         
         XCTAssertTrue(changes.count == 1)
         
@@ -153,6 +151,49 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
             return
         }
         XCTAssertFalse(presentation.isExpanded)
+        
+        XCTAssertTrue(changes.isEmpty)
+    }
+    
+    func testPagination() throws {
+        fakeService.setupSuccessData()
+        viewModel.fetchRepositories()
+        
+        // .loading change ignored intentionally!
+        changes.removeFirst()
+        
+        // .items change ignored intentionally!
+        changes.removeFirst()
+        
+        XCTAssertTrue(changes.isEmpty)
+        
+        viewModel.fetchNextPage()
+        
+        let change = changes.removeFirst()
+        guard case .items(let items) = change else {
+            XCTFail("Expected change is \".items\", received \".\(change)\"")
+            return
+        }
+        
+        XCTAssertTrue(items.count == 1)
+        guard case .data(let presentation1) = items[0] else {
+            XCTFail("Expected type is \".data\", received \".\(items[0])\"")
+            return
+        }
+        XCTAssertTrue(presentation1.owner.imageUrl == "https://avatars.bazelbuild.com")
+        XCTAssertTrue(presentation1.owner.name == "bazelbuild")
+        XCTAssertTrue(presentation1.title == "bazel")
+        XCTAssertTrue(presentation1.description == "a fast, scalable, multi-language and extensible build system")
+        XCTAssertTrue(presentation1.language?.name == "Java")
+        XCTAssertTrue(presentation1.language?.colorHex == "#B07219")
+        XCTAssertTrue(presentation1.starCount == "20,432")
+        XCTAssertFalse(presentation1.isExpanded)
+        
+        let change2 = changes.removeFirst()
+        guard case .paginationEnded = change2 else {
+            XCTFail("Expected change is \".paginationEnded\", received \".\(change2)\"")
+            return
+        }
         
         XCTAssertTrue(changes.isEmpty)
     }
