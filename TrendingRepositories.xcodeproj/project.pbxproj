@@ -32,6 +32,8 @@
 		BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */; };
 		BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */; };
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
+		BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */; };
+		BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */; };
 		BBD6CC2F29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */; };
 		BBD6CC3029B6502800CE3A82 /* TrendingRepositoriesFakeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */; };
 		BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */; };
@@ -76,7 +78,8 @@
 		BB7E5E9F296F1C8F00542C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB7E5EA3296F1CE500542C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BB7E5EA6296F1D0F00542C26 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesRouter.swift; sourceTree = "<group>"; };
+		BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesFakeRouter.swift; sourceTree = "<group>"; };
 		BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 		BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesFakeService.swift; sourceTree = "<group>"; };
 		BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */,
+				BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */,
 				BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */,
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
 				BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */,
@@ -241,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */,
+				BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */,
 				BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */,
 			);
 			path = TrendingRepository;
@@ -320,7 +325,6 @@
 				en,
 				Base,
 				tr,
-				ur,
 			);
 			mainGroup = BB7E5E50296EDF6700542C26;
 			packageReferences = (
@@ -380,6 +384,7 @@
 				BB7C113429BA995F00CDF578 /* RoutingManager.swift in Sources */,
 				BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */,
 				BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
+				BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */,
 				BB5BCC7A297195B000FEB7E0 /* UIColor+Initialization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */,
@@ -392,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */,
 				BBD6CC2F29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift in Sources */,
 				BBD6CC3029B6502800CE3A82 /* TrendingRepositoriesFakeService.swift in Sources */,
 			);
@@ -421,7 +427,6 @@
 			children = (
 				BB7E5EA3296F1CE500542C26 /* en */,
 				BB7E5EA5296F1CFA00542C26 /* tr */,
-				BB7E5EA6296F1D0F00542C26 /* ur */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

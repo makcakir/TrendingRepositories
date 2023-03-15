@@ -28,8 +28,9 @@ final class TrendingRepositoriesViewModel {
         return formatter
     }()
     
-    private let dataProtocol: TrendingRepositoriesDataProtocol
     private let pageItemCount: Int
+    private let dataProtocol: TrendingRepositoriesDataProtocol
+    private let router: TrendingRepositoriesRoutingProtocol
     private var expandStates: [Bool] = []
     private var repositories: [Repository] = []
     private var isFetching: Bool = false
@@ -37,9 +38,13 @@ final class TrendingRepositoriesViewModel {
     
     var changeHandler: ((Change) -> Void)?
     
-    init(dataProtocol: TrendingRepositoriesDataProtocol, pageItemCount: Int) {
-        self.dataProtocol = dataProtocol
+    init(
+        pageItemCount: Int, dataProtocol: TrendingRepositoriesDataProtocol,
+        router: TrendingRepositoriesRoutingProtocol
+    ) {
         self.pageItemCount = pageItemCount
+        self.dataProtocol = dataProtocol
+        self.router = router
     }
     
     func fetchRepositories() {
@@ -67,6 +72,21 @@ final class TrendingRepositoriesViewModel {
             repositories[index], index: index, isExpanded: expandStates[index]
         )
         changeHandler?(.selected(item: PresentationType.data(item: item), index: index))
+    }
+    
+    func openRepositoryDetailAt(_ index: Int) {
+        guard index < repositories.count else {
+            return
+        }
+        router.routeToUrl(repositories[index].htmlUrl)
+    }
+    
+    func openHomepageAt(_ index: Int) {
+        guard index < repositories.count,
+              let homepageUrl = URL(string: repositories[index].homepage ?? "") else {
+            return
+        }
+        router.routeToUrl(homepageUrl)
     }
 }
 
@@ -142,7 +162,8 @@ private extension TrendingRepositoriesViewModel {
         let index = "#" + String(index + 1)
         return TrendingRepositoryPresentation(
             index: index, owner: owner, title: repository.name, description: repository.description,
-            language: languagePresentation, starCount: count ?? "", isExpanded: isExpanded
+            language: languagePresentation, starCount: count ?? "",
+            shouldDisplayInfoButton: !(repository.homepage?.isEmpty ?? true), isExpanded: isExpanded
         )
     }
 }

@@ -46,12 +46,18 @@
                                     <constraint firstItem="mBn-W6-Nzb" firstAttribute="top" secondItem="ipL-Ws-iEt" secondAttribute="top" id="nMo-5q-0pP"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9i-qx-mTe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0B-p4-wTx">
                                 <rect key="frame" x="0.0" y="10" width="273" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="SQ1-zo-gYm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="titleButtonTapped:" destination="lNU-4U-OZq" eventType="touchUpInside" id="h7J-6f-c8v"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5M9-Gy-bfL">
                                 <rect key="frame" x="0.0" y="20" width="273" height="43"/>
                                 <subviews>
@@ -122,18 +128,31 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIy-C6-2lF">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIy-C6-2lF">
                         <rect key="frame" x="357" y="16" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKg-61-bD5">
+                        <rect key="frame" x="334" y="50.666666666666664" width="24" height="23.999999999999993"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="aKg-61-bD5" secondAttribute="height" multiplier="1:1" id="HuB-FD-Fmx"/>
+                            <constraint firstAttribute="height" constant="24" id="dhB-Ab-XEo"/>
+                        </constraints>
+                        <buttonConfiguration key="configuration" style="plain"/>
+                        <connections>
+                            <action selector="infoButtonTapped:" destination="lNU-4U-OZq" eventType="touchUpInside" id="lDh-J0-NfD"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="6Xp-Iz-frX" firstAttribute="leading" secondItem="WGe-gb-5x0" secondAttribute="leading" constant="36" id="5YC-XA-Gmq"/>
                     <constraint firstItem="ahL-aN-GOZ" firstAttribute="top" secondItem="WGe-gb-5x0" secondAttribute="top" constant="16" id="F2y-NS-2gA"/>
+                    <constraint firstAttribute="trailing" secondItem="aKg-61-bD5" secondAttribute="trailing" constant="35" id="H4M-om-3n0"/>
                     <constraint firstAttribute="bottom" secondItem="ahL-aN-GOZ" secondAttribute="bottom" constant="16" id="VW8-aw-YDv"/>
                     <constraint firstAttribute="trailing" secondItem="ahL-aN-GOZ" secondAttribute="trailing" constant="36" id="eft-mC-DI8"/>
+                    <constraint firstItem="aKg-61-bD5" firstAttribute="centerY" secondItem="gyG-R3-rVx" secondAttribute="centerY" id="jw8-vJ-AEN"/>
                     <constraint firstItem="WIy-C6-2lF" firstAttribute="top" secondItem="ahL-aN-GOZ" secondAttribute="top" id="kBX-fo-cKy"/>
                     <constraint firstItem="ahL-aN-GOZ" firstAttribute="leading" secondItem="6Xp-Iz-frX" secondAttribute="trailing" constant="16" id="ro3-q4-Y2a"/>
                     <constraint firstItem="6Xp-Iz-frX" firstAttribute="top" secondItem="ahL-aN-GOZ" secondAttribute="top" constant="6" id="tF4-GI-6uK"/>
@@ -144,13 +163,14 @@
                 <outlet property="descriptionLabel" destination="f06-HM-Dfk" id="s6N-d0-Z5X"/>
                 <outlet property="detailStackView" destination="5M9-Gy-bfL" id="0zt-3v-c2S"/>
                 <outlet property="indexLabel" destination="WIy-C6-2lF" id="FRw-BI-HhK"/>
+                <outlet property="infoButton" destination="aKg-61-bD5" id="3yY-qb-cir"/>
                 <outlet property="languageColorView" destination="gyG-R3-rVx" id="4YN-fS-vYr"/>
                 <outlet property="languageContentView" destination="uSD-Zh-FeB" id="ftz-xK-qyO"/>
                 <outlet property="languageLabel" destination="sQQ-2l-Wzf" id="Z5S-Uh-IBe"/>
                 <outlet property="ownerNameLabel" destination="mBn-W6-Nzb" id="Yqs-gx-rl0"/>
                 <outlet property="profileImageView" destination="6Xp-Iz-frX" id="ask-vC-Qnp"/>
                 <outlet property="starCountLabel" destination="4aJ-sR-zGh" id="QnD-gT-tKs"/>
-                <outlet property="titleLabel" destination="B9i-qx-mTe" id="SbS-1J-I1x"/>
+                <outlet property="titleButton" destination="T0B-p4-wTx" id="W2b-bg-HAB"/>
             </connections>
             <point key="canvasLocation" x="127" y="-181"/>
         </tableViewCell>

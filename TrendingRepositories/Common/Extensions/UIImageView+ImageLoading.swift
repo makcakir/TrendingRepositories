@@ -9,8 +9,7 @@ import SDWebImage
 
 extension UIImageView {
     
-    func setImage(_ imageUrl: String, placeholderImage: UIImage? = nil) {
-        let url = URL(string: imageUrl)
-        sd_setImage(with: url, placeholderImage: placeholderImage)
+    func setImage(_ imageUrl: URL, placeholderImage: UIImage? = nil) {
+        sd_setImage(with: imageUrl, placeholderImage: placeholderImage)
     }
 }

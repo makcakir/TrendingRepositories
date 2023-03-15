@@ -53,7 +53,7 @@ private extension TrendingRepositoriesViewController {
     }
     
     func setupSubviews() {
-        title = "trending".localized()
+        title = "trendingRepositories".localized()
         
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -147,6 +147,7 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
         switch presentationTypes[indexPath.row] {
         case .data(let presentation):
             let cell = tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryTableViewCell.self)
+            cell.delegate = self
             cell.fill(presentation)
             return cell
         case .loading:
@@ -170,5 +171,24 @@ extension TrendingRepositoriesViewController: UITableViewDelegate {
             return
         }
         viewModel.fetchNextPage()
+    }
+}
+
+// MARK: TrendingRepositoryTableViewCellDelegate
+
+extension TrendingRepositoriesViewController: TrendingRepositoryTableViewCellDelegate {
+    
+    func trendingRepositoryTableViewCellDidTapTitleButton(cell: TrendingRepositoryTableViewCell) {
+        guard let row = tableView.indexPath(for: cell)?.row else {
+            return
+        }
+        viewModel.openRepositoryDetailAt(row)
+    }
+    
+    func trendingRepositoryTableViewCellDidTapInfoButton(cell: TrendingRepositoryTableViewCell) {
+        guard let row = tableView.indexPath(for: cell)?.row else {
+            return
+        }
+        viewModel.openHomepageAt(row)
     }
 }

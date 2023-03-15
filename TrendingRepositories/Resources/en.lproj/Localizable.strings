@@ -9,4 +9,4 @@
 "errorDescription" = "An alien is probably blocking your signal.";
 "errorMessage" = "Something went wrong...";
 "retry" = "RETRY";
-"trending" = "Trending";
+"trendingRepositories" = "Trending Repositories";

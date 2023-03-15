@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol TrendingRepositoryTableViewCellDelegate: AnyObject {
+    
+    func trendingRepositoryTableViewCellDidTapTitleButton(cell: TrendingRepositoryTableViewCell)
+    func trendingRepositoryTableViewCellDidTapInfoButton(cell: TrendingRepositoryTableViewCell)
+}
+
 final class TrendingRepositoryTableViewCell: UITableViewCell {
     
     private enum Const {
@@ -15,7 +21,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var ownerNameLabel: UILabel!
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleButton: UIButton!
     @IBOutlet private weak var detailStackView: UIStackView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var languageContentView: UIView!
@@ -23,6 +29,9 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var starCountLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
+    @IBOutlet private weak var infoButton: UIButton!
+    
+    weak var delegate: TrendingRepositoryTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,7 +58,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         )
         indexLabel.text = presentation.index
         ownerNameLabel.text = presentation.owner.name
-        titleLabel.text = presentation.title
+        titleButton.setTitle(presentation.title, for: .normal)
         descriptionLabel.text = presentation.description
         if let language = presentation.language {
             languageContentView.isHidden = false
@@ -66,9 +75,27 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         }
         starCountLabel.text = presentation.starCount
         detailStackView.isHidden = !presentation.isExpanded
+        if presentation.shouldDisplayInfoButton {
+            infoButton.isHidden = !presentation.isExpanded
+            infoButton.isEnabled = true
+        } else {
+            infoButton.isHidden = true
+            infoButton.isEnabled = false
+        }
     }
     
     func toggleExpanded() {
         detailStackView.isHidden.toggle()
+        if infoButton.isEnabled {
+            infoButton.isHidden.toggle()
+        }
+    }
+    
+    @IBAction func titleButtonTapped(_ sender: Any) {
+        delegate?.trendingRepositoryTableViewCellDidTapTitleButton(cell: self)
+    }
+    
+    @IBAction private func infoButtonTapped(_ sender: Any) {
+        delegate?.trendingRepositoryTableViewCellDidTapInfoButton(cell: self)
     }
 }

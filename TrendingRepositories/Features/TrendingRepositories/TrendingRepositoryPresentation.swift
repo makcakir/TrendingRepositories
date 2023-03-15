@@ -8,7 +8,7 @@
 import Foundation
 
 struct OwnerPresentation: Equatable {
-    let imageUrl: String
+    let imageUrl: URL
     let name: String
 }
 
@@ -24,5 +24,6 @@ struct TrendingRepositoryPresentation: Equatable {
     let description: String
     let language: LanguagePresentation?
     let starCount: String
+    let shouldDisplayInfoButton: Bool
     let isExpanded: Bool
 }

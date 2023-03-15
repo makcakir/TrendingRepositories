@@ -8,7 +8,7 @@
 import Foundation
 
 struct Owner: Decodable {
-    let avatarUrl: String
+    let avatarUrl: URL
     let login: String
     
     enum CodingKeys: String, CodingKey {
@@ -19,6 +19,8 @@ struct Owner: Decodable {
 
 struct Repository: Decodable {
     let description: String
+    let homepage: String?
+    let htmlUrl: URL
     let language: String?
     let name: String
     let owner: Owner
@@ -26,6 +28,8 @@ struct Repository: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case description
+        case homepage
+        case htmlUrl = "html_url"
         case language
         case name
         case owner
