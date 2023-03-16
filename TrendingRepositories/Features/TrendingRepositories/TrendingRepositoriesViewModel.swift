@@ -16,10 +16,12 @@ final class TrendingRepositoriesViewModel {
     
     enum Change: Equatable {
         case error
+        case hideSearch
         case items(items: [PresentationType])
         case loading(items: [PresentationType])
         case paginationEnded
         case selected(item: PresentationType, index: Int)
+        case showSearch(filters: [String], selectedIndex: Int)
     }
     
     private lazy var numberFormatter: NumberFormatter = {
@@ -33,8 +35,15 @@ final class TrendingRepositoriesViewModel {
     private let router: TrendingRepositoriesRoutingProtocol
     private var expandStates: [Bool] = []
     private var repositories: [Repository] = []
-    private var isFetching: Bool = false
+    private var isFetching = false
     private var totalCount = 0
+    private var selectedFilterIndex: Int = 0
+    private var selectedLanguage: String {
+        guard  selectedFilterIndex > 0, selectedFilterIndex < Const.filters.count else {
+            return ""
+        }
+        return Const.filters[selectedFilterIndex]
+    }
     
     var changeHandler: ((Change) -> Void)?
     
@@ -88,6 +97,14 @@ final class TrendingRepositoriesViewModel {
         }
         router.routeToUrl(homepageUrl)
     }
+    
+    func selectFilterAt(_ index: Int) {
+        guard index != selectedFilterIndex else {
+            return
+        }
+        selectedFilterIndex = index
+        fetchRepositories()
+    }
 }
 
 // MARK: - Helpers
@@ -116,11 +133,18 @@ private extension TrendingRepositoriesViewModel {
             "Vim Script": "#199F4B", "Vue": "#41B883", "WebAssembly": "#04133B", "Wren": "#383838",
             "YASnippet": "#32AB90", "Zig": "#EC915C"
         ]
+        static let filters = [
+            "all".localized(), "Assembly", "Astro", "C", "C++", "C#", "CSS", "Dart", "Go", "HTML",
+            "Java", "JavaScript", "Kotlin", "Makefile", "Markdown", "Objective-C", "Perl", "PHP",
+            "Python", "Ruby", "Rust", "Scala", "Shell", "Swift", "TypeScript", "Vue"
+        ]
     }
     
     func fetchRepositories(page: Int) {
         isFetching = true
-        dataProtocol.fetchTrendingRepositories(perPage: pageItemCount, page: page) { [weak self] result in
+        dataProtocol.fetchTrendingRepositories(
+            language: selectedLanguage, perPage: pageItemCount, page: page
+        ) { [weak self] result in
             guard let self = self else {
                 return
             }
@@ -136,11 +160,13 @@ private extension TrendingRepositoriesViewModel {
                     self.expandStates.append(item.isExpanded)
                     return PresentationType.data(item: item)
                 }
+                self.changeHandler?(.showSearch(filters: Const.filters, selectedIndex: self.selectedFilterIndex))
                 self.changeHandler?(.items(items: dataItems))
                 if self.repositories.count >= self.totalCount {
                     self.changeHandler?(.paginationEnded)
                 }
             case .failure(_):
+                self.changeHandler?(.hideSearch)
                 self.changeHandler?(.error)
             }
         }

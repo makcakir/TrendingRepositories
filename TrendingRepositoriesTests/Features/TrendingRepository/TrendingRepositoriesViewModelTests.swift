@@ -40,7 +40,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     func testLoadingState() throws {
         viewModel.fetchRepositories()
         
-        XCTAssertEqual(changes.count, 2)
+        XCTAssertEqual(changes.count, 3)
         
         let change = changes.removeFirst()
         guard case .loading(let items) = change else {
@@ -49,6 +49,9 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         }
         XCTAssertEqual(items.count, 2)
         XCTAssertTrue(items.allSatisfy { $0 == .loading })
+        
+        // .hideSearch change ignored intentionally!
+        changes.removeFirst()
         
         // .error change ignored intentionally!
         changes.removeFirst()
@@ -59,10 +62,12 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     func testFetchRepositoriesError() throws {
         viewModel.fetchRepositories()
         
-        XCTAssertEqual(changes.count, 2)
+        XCTAssertEqual(changes.count, 3)
         
         // .loading change ignored intentionally!
         changes.removeFirst()
+        
+        XCTAssertEqual(changes.removeFirst(), .hideSearch)
         
         XCTAssertEqual(changes.removeFirst(), .error)
         
@@ -73,17 +78,24 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         fakeService.setupSuccessData()
         viewModel.fetchRepositories()
         
-        XCTAssertEqual(changes.count, 2)
+        XCTAssertEqual(changes.count, 3)
         
         // .loading change ignored intentionally!
         changes.removeFirst()
         
-        let change = changes.removeFirst()
-        guard case .items(let items) = change else {
-            XCTFail("Expected change is \".items\", received \".\(change)\"")
+        let change1 = changes.removeFirst()
+        guard case .showSearch(let filters, let selectedIndex) = change1 else {
+            XCTFail("Expected change is \".showSearch\", received \".\(change1)\"")
             return
         }
+        XCTAssertEqual(filters.count, 26)
+        XCTAssertEqual(selectedIndex, 0)
         
+        let change2 = changes.removeFirst()
+        guard case .items(let items) = change2 else {
+            XCTFail("Expected change is \".items\", received \".\(change2)\"")
+            return
+        }
         XCTAssertEqual(items.count, 2)
         guard case .data(let presentation1) = items[0] else {
             XCTFail("Expected type is \".data\", received \".\(items[0])\"")
@@ -119,6 +131,9 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         viewModel.fetchRepositories()
         
         // .loading change ignored intentionally!
+        changes.removeFirst()
+        
+        // .showSearch change ignored intentionally!
         changes.removeFirst()
         
         // .items change ignored intentionally!
@@ -169,12 +184,18 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         // .loading change ignored intentionally!
         changes.removeFirst()
         
+        // .showSearch change ignored intentionally!
+        changes.removeFirst()
+        
         // .items change ignored intentionally!
         changes.removeFirst()
         
         XCTAssertTrue(changes.isEmpty)
         
         viewModel.fetchNextPage()
+        
+        // .showSearch change ignored intentionally!
+        changes.removeFirst()
         
         let change = changes.removeFirst()
         guard case .items(let items) = change else {
@@ -213,6 +234,9 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         // .loading change ignored intentionally!
         changes.removeFirst()
         
+        // .showSearch change ignored intentionally!
+        changes.removeFirst()
+        
         // .items change ignored intentionally!
         changes.removeFirst()
         
@@ -233,6 +257,9 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         // .loading change ignored intentionally!
         changes.removeFirst()
         
+        // .showSearch change ignored intentionally!
+        changes.removeFirst()
+        
         // .items change ignored intentionally!
         changes.removeFirst()
         
@@ -244,5 +271,54 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         
         XCTAssertTrue(changes.isEmpty)
         XCTAssertEqual(fakeRouter.url?.absoluteString, "https://swift.org")
+    }
+    
+    func testFilter() throws {
+        fakeService.setupSuccessData()
+        viewModel.fetchRepositories()
+        
+        // .loading change ignored intentionally!
+        changes.removeFirst()
+        
+        // .showSearch change ignored intentionally!
+        changes.removeFirst()
+        
+        // .items change ignored intentionally!
+        changes.removeFirst()
+        
+        XCTAssertTrue(changes.isEmpty)
+        
+        viewModel.selectFilterAt(4)
+        
+        // .loading change ignored intentionally!
+        changes.removeFirst()
+        
+        // .showSearch change ignored intentionally!
+        changes.removeFirst()
+        
+        let change = changes.removeFirst()
+        guard case .items(let items) = change else {
+            XCTFail("Expected change is \".items\", received \".\(change)\"")
+            return
+        }
+        XCTAssertEqual(items.count, 1)
+        guard case .data(let presentation1) = items[0] else {
+            XCTFail("Expected type is \".data\", received \".\(items[0])\"")
+            return
+        }
+        XCTAssertEqual(presentation1.owner.imageUrl.absoluteString, "https://avatars.apple.com")
+        XCTAssertEqual(presentation1.owner.name, "apple")
+        XCTAssertEqual(presentation1.title, "swift")
+        XCTAssertEqual(presentation1.description, "The Swift Programming Language")
+        XCTAssertEqual(presentation1.language?.name, "C++")
+        XCTAssertEqual(presentation1.language?.colorHex, "#F34B7D")
+        XCTAssertEqual(presentation1.starCount, "61,983")
+        XCTAssertTrue(presentation1.shouldDisplayInfoButton)
+        XCTAssertFalse(presentation1.isExpanded)
+        
+        // .paginationEnded change ignored intentionally!
+        changes.removeFirst()
+        
+        XCTAssertTrue(changes.isEmpty)
     }
 }

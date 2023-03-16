@@ -6,6 +6,8 @@
   
 */
 
+"all" = "Hepsi";
+"cancel" = "İptal";
 "errorDescription" = "Bir uzaylı muhtemelen sinyalinizi engelliyor.";
 "errorMessage" = "Bir terslik oldu...";
 "retry" = "TEKRAR DENE";

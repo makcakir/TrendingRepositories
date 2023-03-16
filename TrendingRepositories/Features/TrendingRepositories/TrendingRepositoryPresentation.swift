@@ -21,7 +21,7 @@ struct TrendingRepositoryPresentation: Equatable {
     let index: String
     let owner: OwnerPresentation
     let title: String
-    let description: String
+    let description: String?
     let language: LanguagePresentation?
     let starCount: String
     let shouldDisplayInfoButton: Bool

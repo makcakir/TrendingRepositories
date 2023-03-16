@@ -32,6 +32,7 @@
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
 		BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */; };
 		BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */; };
+		BBB2B58F29C36F3600B83062 /* UIViewController+ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */; };
 		BBD6CC2F29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */; };
 		BBD6CC3029B6502800CE3A82 /* TrendingRepositoriesFakeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */; };
 		BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */; };
@@ -75,6 +76,7 @@
 		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesRouter.swift; sourceTree = "<group>"; };
 		BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesFakeRouter.swift; sourceTree = "<group>"; };
+		BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ActionSheet.swift"; sourceTree = "<group>"; };
 		BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 		BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesFakeService.swift; sourceTree = "<group>"; };
 		BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */,
 				BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */,
 				BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */,
+				BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
 				BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
+				BBB2B58F29C36F3600B83062 /* UIViewController+ActionSheet.swift in Sources */,
 				BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
 				BBD792412970B94F0090C578 /* TrendingRepositoriesResponse.swift in Sources */,

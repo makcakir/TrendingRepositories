@@ -58,16 +58,11 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         indexLabel.text = presentation.index
         ownerNameLabel.text = presentation.owner.name
         titleButton.setTitle(presentation.title, for: .normal)
+        descriptionLabel.isHidden = presentation.description?.isEmpty ?? true
         descriptionLabel.text = presentation.description
-        if let language = presentation.language {
-            languageContentView.isHidden = false
-            languageColorView.backgroundColor = UIColor(hexString: language.colorHex)
-            languageLabel.text = language.name
-        } else {
-            languageContentView.isHidden = true
-            languageColorView.backgroundColor = nil
-            languageLabel.text = nil
-        }
+        languageContentView.isHidden = presentation.language == nil
+        languageColorView.backgroundColor = UIColor(hexString: presentation.language?.colorHex ?? "")
+        languageLabel.text = presentation.language?.name
         starCountLabel.text = presentation.starCount
         detailStackView.isHidden = !presentation.isExpanded
         if presentation.shouldDisplayInfoButton {

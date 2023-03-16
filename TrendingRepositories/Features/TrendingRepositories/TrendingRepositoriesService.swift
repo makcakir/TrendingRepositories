@@ -12,20 +12,22 @@ typealias TrendingRepositoriesCompletion = (Result<TrendingRepositoriesResponse,
 protocol TrendingRepositoriesDataProtocol {
     
     func fetchTrendingRepositories(
-        perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
+        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     )
 }
 
 final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     
     private enum Const {
-        static let trendingUrl = "https://api.github.com/search/repositories?q=language=+sort:stars&per_page=%d&page=%d"
+        static let trendingUrl = "https://api.github.com/search/repositories?q=language%@+sort:stars&per_page=%d&page=%d"
     }
     
     func fetchTrendingRepositories(
-        perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
+        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     ) {
-        let url = String(format: Const.trendingUrl, perPage, page)
+        let prefix = language.isEmpty ? "=" : ":"
+        let lang = (language.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")
+        let url = String(format: Const.trendingUrl, prefix + lang, perPage, page)
         NetworkManager.shared.request(url) { (result: Result<TrendingRepositoriesResponse, Error>) in
             completion(result)
         }

@@ -21,6 +21,8 @@ final class TrendingRepositoriesViewController: UIViewController {
     
     private let viewModel: TrendingRepositoriesViewModel
     private var presentationTypes: [TrendingRepositoriesViewModel.PresentationType] = []
+    private var filters: [String]?
+    private var selectedFilterIndex: Int = 0
     
     init(viewModel: TrendingRepositoriesViewModel) {
         self.viewModel = viewModel
@@ -83,6 +85,15 @@ private extension TrendingRepositoriesViewController {
         viewModel.fetchRepositories()
     }
     
+    @objc func searchBarButtonItemTapped(barButtonItem: UIBarButtonItem) {
+        showAlert(
+            preferredStyle: .actionSheet, buttonTitles: filters, highlightedButtonIndex: selectedFilterIndex,
+            barButtonItem: barButtonItem
+        ) { index in
+            self.viewModel.selectFilterAt(index)
+        }
+    }
+    
     func bindViewModel() {
         viewModel.changeHandler = { [weak self] change in
             guard let self = self else {
@@ -99,6 +110,8 @@ private extension TrendingRepositoriesViewController {
             errorView.isHidden = false
             retryAnimationView.play()
             tableView.scrollToTop(animated: false)
+        case .hideSearch:
+            navigationItem.rightBarButtonItem = nil
         case .items(let items):
             refreshControl.endRefreshing()
             tableView.isScrollEnabled = true
@@ -110,6 +123,7 @@ private extension TrendingRepositoriesViewController {
             }
             tableView.reloadData()
         case .loading(let items):
+            tableView.scrollToTop(animated: false)
             tableView.isScrollEnabled = false
             tableView.isUserInteractionEnabled = false
             errorView.isHidden = true
@@ -128,6 +142,13 @@ private extension TrendingRepositoriesViewController {
             UIView.animate(withDuration: Const.animationDuration) {
                 self.tableView.performBatchUpdates(nil)
             }
+        case .showSearch(let filters, let selectedFilterIndex):
+            self.filters = filters
+            self.selectedFilterIndex = selectedFilterIndex
+            let barButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .search, target: self, action: #selector(searchBarButtonItemTapped(barButtonItem:))
+            )
+            navigationItem.rightBarButtonItem = barButtonItem
         }
     }
 }

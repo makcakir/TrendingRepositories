@@ -18,7 +18,7 @@ struct Owner: Decodable {
 }
 
 struct Repository: Decodable {
-    let description: String
+    let description: String?
     let homepage: String?
     let htmlUrl: URL
     let language: String?

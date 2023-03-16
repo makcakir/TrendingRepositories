@@ -54,17 +54,23 @@ final class TrendingRepositoriesFakeService {
 extension TrendingRepositoriesFakeService: TrendingRepositoriesDataProtocol {
     
     func fetchTrendingRepositories(
-        perPage: Int, page: Int, completion: @escaping TrendingRepositories.TrendingRepositoriesCompletion
+        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositories.TrendingRepositoriesCompletion
     ) {
+        let filteredItems: [Repository]
+        if !language.isEmpty {
+            filteredItems = items.filter { $0.language == language }
+        } else {
+            filteredItems = items
+        }
         let currentCount = perPage * (page - 1)
-        let remainingCount = items.count - currentCount
-        guard isSuccess, currentCount <= items.count else {
+        let remainingCount = filteredItems.count - currentCount
+        guard isSuccess, currentCount <= filteredItems.count else {
             completion(result)
             return
         }
         let lastIndex = min(remainingCount, perPage)
         let response = TrendingRepositoriesResponse(
-            items: Array(items[currentCount..<currentCount + lastIndex]), totalCount: items.count
+            items: Array(filteredItems[currentCount..<currentCount + lastIndex]), totalCount: filteredItems.count
         )
         completion(.success(response))
     }
