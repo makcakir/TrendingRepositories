@@ -6,6 +6,7 @@
 //
 
 import Lottie
+import SwifterSwift
 import UIKit
 
 final class TrendingRepositoriesViewController: UIViewController {
@@ -58,8 +59,8 @@ private extension TrendingRepositoriesViewController {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
-        tableView.registerNibReusableCell(TrendingRepositoryShimmerTableViewCell.self)
-        tableView.registerNibReusableCell(TrendingRepositoryTableViewCell.self)
+        tableView.register(nibWithCellClass: TrendingRepositoryShimmerTableViewCell.self)
+        tableView.register(nibWithCellClass: TrendingRepositoryTableViewCell.self)
         
         let frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44.0)
         let activityIndicatorView = UIActivityIndicatorView(frame: frame)
@@ -97,7 +98,7 @@ private extension TrendingRepositoriesViewController {
             refreshControl.endRefreshing()
             errorView.isHidden = false
             retryAnimationView.play()
-            tableView.setContentOffset(.zero, animated: false)
+            tableView.scrollToTop(animated: false)
         case .items(let items):
             refreshControl.endRefreshing()
             tableView.isScrollEnabled = true
@@ -146,12 +147,12 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
     ) -> UITableViewCell {
         switch presentationTypes[indexPath.row] {
         case .data(let presentation):
-            let cell = tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryTableViewCell.self)
+            let cell = tableView.dequeueReusableCell(withClass: TrendingRepositoryTableViewCell.self)
             cell.delegate = self
             cell.fill(presentation)
             return cell
         case .loading:
-            return tableView.dequeueReusableCell(indexPath, type: TrendingRepositoryShimmerTableViewCell.self)
+            return tableView.dequeueReusableCell(withClass: TrendingRepositoryShimmerTableViewCell.self)
         }
     }
 }

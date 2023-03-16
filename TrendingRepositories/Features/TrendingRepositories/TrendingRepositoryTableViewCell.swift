@@ -5,6 +5,7 @@
 //  Created by Mustafa Ali Akçakır on 12.01.2023.
 //
 
+import SwifterSwift
 import UIKit
 
 protocol TrendingRepositoryTableViewCellDelegate: AnyObject {
@@ -60,7 +61,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         descriptionLabel.text = presentation.description
         if let language = presentation.language {
             languageContentView.isHidden = false
-            languageColorView.backgroundColor = UIColor(hex: language.colorHex)
+            languageColorView.backgroundColor = UIColor(hexString: language.colorHex)
             languageLabel.text = language.name
         } else {
             languageContentView.isHidden = true

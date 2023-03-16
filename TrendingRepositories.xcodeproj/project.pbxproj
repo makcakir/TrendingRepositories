@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB3C8A7729C346BA0096B9C5 /* SwifterSwift */; };
 		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
 		BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC6429717FAB00FEB7E0 /* SDWebImage */; };
 		BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC69297193B700FEB7E0 /* Lottie */; };
 		BB5BCC6E2971953A00FEB7E0 /* retry.json in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC6D2971953A00FEB7E0 /* retry.json */; };
 		BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */; };
-		BB5BCC7A297195B000FEB7E0 /* UIColor+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC73297195B000FEB7E0 /* UIColor+Initialization.swift */; };
 		BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */; };
-		BB5BCC7C297195B000FEB7E0 /* UITableView+NibRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC75297195B000FEB7E0 /* UITableView+NibRegistering.swift */; };
 		BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */; };
-		BB5BCC7E297195B000FEB7E0 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC77297195B000FEB7E0 /* String+Localization.swift */; };
 		BB5BCC8B2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */; };
 		BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */; };
 		BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */; };
@@ -56,11 +54,8 @@
 		BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesService.swift; sourceTree = "<group>"; };
 		BB5BCC6D2971953A00FEB7E0 /* retry.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = retry.json; sourceTree = "<group>"; };
 		BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		BB5BCC73297195B000FEB7E0 /* UIColor+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Initialization.swift"; sourceTree = "<group>"; };
 		BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
-		BB5BCC75297195B000FEB7E0 /* UITableView+NibRegistering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+NibRegistering.swift"; sourceTree = "<group>"; };
 		BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoading.swift"; sourceTree = "<group>"; };
-		BB5BCC77297195B000FEB7E0 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingRepositoriesViewController.xib; sourceTree = "<group>"; };
 		BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styling.swift"; sourceTree = "<group>"; };
 		BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoryShimmerTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +90,7 @@
 				BBFF7765298D70AB00E8AECC /* Alamofire in Frameworks */,
 				BB7C113229BA872D00CDF578 /* AlamofireNetworkActivityLogger in Frameworks */,
 				BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */,
+				BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */,
 				BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,11 +127,8 @@
 		BB5BCC72297195B000FEB7E0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BB5BCC77297195B000FEB7E0 /* String+Localization.swift */,
 				BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */,
-				BB5BCC73297195B000FEB7E0 /* UIColor+Initialization.swift */,
 				BB5BCC76297195B000FEB7E0 /* UIImageView+ImageLoading.swift */,
-				BB5BCC75297195B000FEB7E0 /* UITableView+NibRegistering.swift */,
 				BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */,
 			);
 			path = Extensions;
@@ -272,6 +265,7 @@
 				BB5BCC69297193B700FEB7E0 /* Lottie */,
 				BBFF7764298D70AB00E8AECC /* Alamofire */,
 				BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */,
+				BB3C8A7729C346BA0096B9C5 /* SwifterSwift */,
 			);
 			productName = TrendingRepositories;
 			productReference = BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */;
@@ -332,6 +326,7 @@
 				BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
+				BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 			);
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
 			projectDirPath = "";
@@ -375,17 +370,14 @@
 				BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */,
 				BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */,
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
-				BB5BCC7C297195B000FEB7E0 /* UITableView+NibRegistering.swift in Sources */,
 				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
-				BB5BCC7E297195B000FEB7E0 /* String+Localization.swift in Sources */,
 				BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
 				BB7C113429BA995F00CDF578 /* RoutingManager.swift in Sources */,
 				BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */,
 				BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
 				BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */,
-				BB5BCC7A297195B000FEB7E0 /* UIColor+Initialization.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */,
 				BB7E5E5F296EDF6700542C26 /* SceneDelegate.swift in Sources */,
@@ -675,6 +667,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
@@ -710,6 +710,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BB3C8A7729C346BA0096B9C5 /* SwifterSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
+			productName = SwifterSwift;
+		};
 		BB5BCC6429717FAB00FEB7E0 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */;
