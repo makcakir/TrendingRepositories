@@ -41,8 +41,6 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         profileImageView.layer.borderColor = UIColor.label.cgColor
         profileImageView.layer.borderWidth = Const.bordorWidth
         languageColorView.makeCornersRounded()
-        languageColorView.layer.borderColor = UIColor.label.cgColor
-        languageColorView.layer.borderWidth = Const.bordorWidth
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -62,11 +60,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         descriptionLabel.text = presentation.description
         if let language = presentation.language {
             languageContentView.isHidden = false
-            if let colorHex = language.colorHex {
-                languageColorView.backgroundColor = UIColor(hex: colorHex)
-            } else {
-                languageColorView.backgroundColor = nil
-            }
+            languageColorView.backgroundColor = UIColor(hex: language.colorHex)
             languageLabel.text = language.name
         } else {
             languageContentView.isHidden = true

@@ -14,7 +14,7 @@ struct OwnerPresentation: Equatable {
 
 struct LanguagePresentation: Equatable {
     let name: String
-    let colorHex: String?
+    let colorHex: String
 }
 
 struct TrendingRepositoryPresentation: Equatable {

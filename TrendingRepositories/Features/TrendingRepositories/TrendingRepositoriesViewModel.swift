@@ -155,7 +155,7 @@ private extension TrendingRepositoriesViewModel {
         var languagePresentation: LanguagePresentation? = nil
         if let language = repository.language {
             languagePresentation = LanguagePresentation(
-                name: language, colorHex: Const.colorsDictionary[language]
+                name: language, colorHex: Const.colorsDictionary[language] ?? "#CCCCCC"
             )
         }
         let count = numberFormatter.string(from: NSNumber(value: repository.starCount))
