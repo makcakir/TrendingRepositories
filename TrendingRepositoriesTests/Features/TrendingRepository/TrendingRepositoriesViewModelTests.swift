@@ -21,7 +21,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         fakeService = TrendingRepositoriesFakeService()
         fakeRouter = TrendingRepositoriesFakeRouter()
         viewModel = TrendingRepositoriesViewModel(
-            pageItemCount: 2, dataProtocol: fakeService, router: fakeRouter
+            pageItemCount: 2, dataProtocol: fakeService, router: fakeRouter, dispatchGroup: FakeDispatchGroup()
         )
         viewModel.changeHandler = { [unowned self] change in
             self.changes.append(change)

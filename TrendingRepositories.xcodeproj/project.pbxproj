@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB24F1E129C492C00030E57B /* LanguageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E029C492C00030E57B /* LanguageColor.swift */; };
+		BB24F1E429C4B57B0030E57B /* DispatchGroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E329C4B57B0030E57B /* DispatchGroupProtocol.swift */; };
+		BB24F1E929C4BEEA0030E57B /* FakeDispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */; };
 		BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB3C8A7729C346BA0096B9C5 /* SwifterSwift */; };
 		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
 		BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC6429717FAB00FEB7E0 /* SDWebImage */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB24F1E029C492C00030E57B /* LanguageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageColor.swift; sourceTree = "<group>"; };
+		BB24F1E329C4B57B0030E57B /* DispatchGroupProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchGroupProtocol.swift; sourceTree = "<group>"; };
+		BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDispatchGroup.swift; sourceTree = "<group>"; };
 		BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesService.swift; sourceTree = "<group>"; };
 		BB5BCC6D2971953A00FEB7E0 /* retry.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = retry.json; sourceTree = "<group>"; };
 		BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -108,9 +114,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB24F1E229C4B56B0030E57B /* DispatchGroupProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				BB24F1E329C4B57B0030E57B /* DispatchGroupProtocol.swift */,
+			);
+			path = DispatchGroupProtocol;
+			sourceTree = "<group>";
+		};
+		BB24F1E729C4BEEA0030E57B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		BB5BCC6F297195B000FEB7E0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BB24F1E229C4B56B0030E57B /* DispatchGroupProtocol */,
 				BB5BCC72297195B000FEB7E0 /* Extensions */,
 				BB5BCC70297195B000FEB7E0 /* Managers */,
 			);
@@ -179,6 +202,7 @@
 		BB7E5E72296EDF6900542C26 /* TrendingRepositoriesTests */ = {
 			isa = PBXGroup;
 			children = (
+				BB24F1E729C4BEEA0030E57B /* Common */,
 				BBD6CC2B29B6502800CE3A82 /* Features */,
 			);
 			path = TrendingRepositoriesTests;
@@ -214,6 +238,7 @@
 		BB7E5E96296EFC9900542C26 /* TrendingRepositories */ = {
 			isa = PBXGroup;
 			children = (
+				BB24F1E029C492C00030E57B /* LanguageColor.swift */,
 				BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */,
 				BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */,
 				BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */,
@@ -240,8 +265,8 @@
 		BBD6CC2C29B6502800CE3A82 /* TrendingRepository */ = {
 			isa = PBXGroup;
 			children = (
-				BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */,
 				BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */,
+				BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */,
 				BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */,
 			);
 			path = TrendingRepository;
@@ -371,9 +396,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */,
+				BB24F1E429C4B57B0030E57B /* DispatchGroupProtocol.swift in Sources */,
 				BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */,
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
 				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
+				BB24F1E129C492C00030E57B /* LanguageColor.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
 				BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */,
 				BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */,
@@ -395,6 +422,7 @@
 			files = (
 				BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */,
 				BBD6CC2F29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift in Sources */,
+				BB24F1E929C4BEEA0030E57B /* FakeDispatchGroup.swift in Sources */,
 				BBD6CC3029B6502800CE3A82 /* TrendingRepositoriesFakeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

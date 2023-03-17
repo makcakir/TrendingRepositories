@@ -53,8 +53,18 @@ final class TrendingRepositoriesFakeService {
 
 extension TrendingRepositoriesFakeService: TrendingRepositoriesDataProtocol {
     
+    func fetchLanguageColors(completion: @escaping LanguageColorsCompletion) {
+        let languageColor1 = LanguageColor(
+            color: "#F34B7D", url: URL(unsafeString: "https://github.com/trending?l=C++")
+        )
+        let languageColor2 = LanguageColor(
+            color: "#B07219", url: URL(unsafeString: "https://github.com/trending?l=Java")
+        )
+        completion(.success(["C++": languageColor1, "Java": languageColor2]))
+    }
+    
     func fetchTrendingRepositories(
-        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositories.TrendingRepositoriesCompletion
+        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     ) {
         let filteredItems: [Repository]
         if !language.isEmpty {
