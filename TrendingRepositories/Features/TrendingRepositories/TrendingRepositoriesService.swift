@@ -15,7 +15,7 @@ protocol TrendingRepositoriesDataProtocol {
     func fetchLanguageColors(completion: @escaping LanguageColorsCompletion)
     
     func fetchTrendingRepositories(
-        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
+        language: String?, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     )
 }
 
@@ -23,7 +23,7 @@ final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     
     private enum Const {
         static let colorsUrl = "https://raw.githubusercontent.com/ozh/github-colors/master/colors.json"
-        static let trendingUrl = "https://api.github.com/search/repositories?q=language%@+sort:stars&per_page=%d&page=%d"
+        static let trendingUrl = "https://api.github.com/search/repositories"
     }
     
     func fetchLanguageColors(completion: @escaping LanguageColorsCompletion) {
@@ -33,12 +33,16 @@ final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     }
     
     func fetchTrendingRepositories(
-        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
+        language: String?, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     ) {
-        let prefix = language.isEmpty ? "=" : ":"
-        let lang = (language.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")
-        let url = String(format: Const.trendingUrl, prefix + lang, perPage, page)
-        NetworkManager.shared.request(url) { result in
+        let languageQuery: String
+        if let lang = language {
+            languageQuery = "stars:>1 language:" + lang
+        } else {
+            languageQuery = "stars:>1"
+        }
+        let parameters: [String : Any] = ["q": languageQuery, "sort": "stars", "per_page": perPage, "page": page]
+        NetworkManager.shared.request(Const.trendingUrl, parameters: parameters) { result in
             completion(result)
         }
     }

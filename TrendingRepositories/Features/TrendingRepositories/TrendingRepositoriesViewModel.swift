@@ -40,9 +40,9 @@ final class TrendingRepositoriesViewModel {
     private var isFetching = false
     private var totalCount = 0
     private var selectedFilterIndex: Int = 0
-    private var selectedLanguage: String {
+    private var selectedLanguage: String? {
         guard  selectedFilterIndex > 0, selectedFilterIndex < Const.filters.count else {
-            return ""
+            return nil
         }
         return Const.filters[selectedFilterIndex]
     }

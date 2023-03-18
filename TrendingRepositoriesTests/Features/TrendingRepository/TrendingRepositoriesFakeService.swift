@@ -64,13 +64,13 @@ extension TrendingRepositoriesFakeService: TrendingRepositoriesDataProtocol {
     }
     
     func fetchTrendingRepositories(
-        language: String, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
+        language: String?, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     ) {
         let filteredItems: [Repository]
-        if !language.isEmpty {
-            filteredItems = items.filter { $0.language == language }
-        } else {
+        if language?.isEmpty ?? true {
             filteredItems = items
+        } else {
+            filteredItems = items.filter { $0.language == language }
         }
         let currentCount = perPage * (page - 1)
         let remainingCount = filteredItems.count - currentCount
