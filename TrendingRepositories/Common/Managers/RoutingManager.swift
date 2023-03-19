@@ -11,7 +11,7 @@ import UIKit
 final class RoutingManager {
     
     private enum Const {
-        static let pageItemCount = 20
+        static let pageItemCount = 50
     }
     
     private var rootViewController: UINavigationController?

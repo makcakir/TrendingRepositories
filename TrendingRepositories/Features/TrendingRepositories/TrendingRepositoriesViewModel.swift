@@ -41,10 +41,10 @@ final class TrendingRepositoriesViewModel {
     private var totalCount = 0
     private var selectedFilterIndex: Int = 0
     private var selectedLanguage: String? {
-        guard  selectedFilterIndex > 0, selectedFilterIndex < Const.filters.count else {
+        guard  selectedFilterIndex > 0, selectedFilterIndex < Const.popularLanguages.count else {
             return nil
         }
-        return Const.filters[selectedFilterIndex]
+        return Const.popularLanguages[selectedFilterIndex]
     }
     
     var changeHandler: ((Change) -> Void)?
@@ -116,10 +116,10 @@ final class TrendingRepositoriesViewModel {
 private extension TrendingRepositoriesViewModel {
     
     enum Const {
-        static let filters = [
-            "all".localized(), "Assembly", "Astro", "C", "C++", "C#", "CSS", "Dart", "Go", "HTML",
-            "Java", "JavaScript", "Kotlin", "Makefile", "Markdown", "Objective-C", "Perl", "PHP",
-            "Python", "Ruby", "Rust", "Scala", "Shell", "Swift", "TypeScript", "Vue"
+        static let popularLanguages = [
+            "all".localized(), "C", "C#", "C++", "CSS", "Dart", "Go", "HTML", "Java", "JavaScript",
+            "Kotlin", "Lua", "Objective-C", "Perl", "PHP", "Python", "Ruby", "Rust", "Scala",
+            "Shell", "Swift", "TypeScript", "Vue"
         ]
     }
     
@@ -173,7 +173,7 @@ private extension TrendingRepositoriesViewModel {
                 }
                 let formattedCount = self.numberFormatter.string(from: NSNumber(value: response.totalCount))
                 let resultMessage = String(format: "resultMessage".localized(), formattedCount ?? "")
-                self.changeHandler?(.showSearch(filters: Const.filters, selectedIndex: self.selectedFilterIndex))
+                self.changeHandler?(.showSearch(filters: Const.popularLanguages, selectedIndex: self.selectedFilterIndex))
                 self.changeHandler?(.items(items: dataItems, resultMessage: resultMessage))
                 
                 if self.repositories.count >= self.totalCount {
