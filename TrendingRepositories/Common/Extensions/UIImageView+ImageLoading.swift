@@ -5,11 +5,12 @@
 //  Created by Mustafa Ali Akçakır on 13.01.2023.
 //
 
-import SDWebImage
+import Kingfisher
+import UIKit
 
 extension UIImageView {
     
     func setImage(_ imageUrl: URL, placeholderImage: UIImage? = nil) {
-        sd_setImage(with: imageUrl, placeholderImage: placeholderImage)
+        kf.setImage(with: imageUrl, placeholder: placeholderImage)
     }
 }

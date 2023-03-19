@@ -12,7 +12,6 @@
 		BB24F1E929C4BEEA0030E57B /* FakeDispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */; };
 		BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB3C8A7729C346BA0096B9C5 /* SwifterSwift */; };
 		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
-		BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC6429717FAB00FEB7E0 /* SDWebImage */; };
 		BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC69297193B700FEB7E0 /* Lottie */; };
 		BB5BCC6E2971953A00FEB7E0 /* retry.json in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC6D2971953A00FEB7E0 /* retry.json */; };
 		BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */; };
@@ -22,7 +21,6 @@
 		BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8C2971AD3200FEB7E0 /* UIButton+Styling.swift */; };
 		BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC8E2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift */; };
 		BB5BCC912971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC902971BB8300FEB7E0 /* TrendingRepositoryShimmerTableViewCell.xib */; };
-		BB5BCC972971CC6800FEB7E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC962971CC6800FEB7E0 /* SDWebImage */; };
 		BB7C113229BA872D00CDF578 /* AlamofireNetworkActivityLogger in Frameworks */ = {isa = PBXBuildFile; productRef = BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */; };
 		BB7C113429BA995F00CDF578 /* RoutingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7C113329BA995F00CDF578 /* RoutingManager.swift */; };
 		BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E5C296EDF6700542C26 /* AppDelegate.swift */; };
@@ -33,6 +31,7 @@
 		BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */; };
 		BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */; };
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
+		BB87947029C7902F001150BE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BB87946F29C7902F001150BE /* Kingfisher */; };
 		BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */; };
 		BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */; };
 		BBB2B58F29C36F3600B83062 /* UIViewController+ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */; };
@@ -95,9 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB87947029C7902F001150BE /* Kingfisher in Frameworks */,
 				BBFF7765298D70AB00E8AECC /* Alamofire in Frameworks */,
 				BB7C113229BA872D00CDF578 /* AlamofireNetworkActivityLogger in Frameworks */,
-				BB5BCC6529717FAB00FEB7E0 /* SDWebImage in Frameworks */,
 				BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */,
 				BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */,
 			);
@@ -107,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB5BCC972971CC6800FEB7E0 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,11 +287,11 @@
 			);
 			name = TrendingRepositories;
 			packageProductDependencies = (
-				BB5BCC6429717FAB00FEB7E0 /* SDWebImage */,
 				BB5BCC69297193B700FEB7E0 /* Lottie */,
 				BBFF7764298D70AB00E8AECC /* Alamofire */,
 				BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */,
 				BB3C8A7729C346BA0096B9C5 /* SwifterSwift */,
+				BB87946F29C7902F001150BE /* Kingfisher */,
 			);
 			productName = TrendingRepositories;
 			productReference = BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */;
@@ -314,7 +312,6 @@
 			);
 			name = TrendingRepositoriesTests;
 			packageProductDependencies = (
-				BB5BCC962971CC6800FEB7E0 /* SDWebImage */,
 			);
 			productName = TrendingRepositoriesTests;
 			productReference = BB7E5E6F296EDF6900542C26 /* TrendingRepositoriesTests.xctest */;
@@ -350,11 +347,11 @@
 			);
 			mainGroup = BB7E5E50296EDF6700542C26;
 			packageReferences = (
-				BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
 				BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
+				BB87946E29C7902F001150BE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
 			projectDirPath = "";
@@ -707,14 +704,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
 		BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -729,6 +718,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.0;
+			};
+		};
+		BB87946E29C7902F001150BE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 		BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -747,25 +744,20 @@
 			package = BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
 			productName = SwifterSwift;
 		};
-		BB5BCC6429717FAB00FEB7E0 /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
 		BB5BCC69297193B700FEB7E0 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB5BCC68297193B700FEB7E0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		BB5BCC962971CC6800FEB7E0 /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BB5BCC6329717FAB00FEB7E0 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
 		BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */;
 			productName = AlamofireNetworkActivityLogger;
+		};
+		BB87946F29C7902F001150BE /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB87946E29C7902F001150BE /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		BBFF7764298D70AB00E8AECC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
