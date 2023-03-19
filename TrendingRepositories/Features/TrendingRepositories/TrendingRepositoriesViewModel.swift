@@ -17,7 +17,7 @@ final class TrendingRepositoriesViewModel {
     enum Change: Equatable {
         case error
         case hideSearch
-        case items(items: [PresentationType])
+        case items(items: [PresentationType], resultMessage: String)
         case loading(items: [PresentationType])
         case paginationEnded
         case selected(item: PresentationType, index: Int)
@@ -171,8 +171,11 @@ private extension TrendingRepositoriesViewModel {
                     self.expandStates.append(item.isExpanded)
                     return PresentationType.data(item: item)
                 }
+                let formattedCount = self.numberFormatter.string(from: NSNumber(value: response.totalCount))
+                let resultMessage = String(format: "resultMessage".localized(), formattedCount ?? "")
                 self.changeHandler?(.showSearch(filters: Const.filters, selectedIndex: self.selectedFilterIndex))
-                self.changeHandler?(.items(items: dataItems))
+                self.changeHandler?(.items(items: dataItems, resultMessage: resultMessage))
+                
                 if self.repositories.count >= self.totalCount {
                     self.changeHandler?(.paginationEnded)
                 }

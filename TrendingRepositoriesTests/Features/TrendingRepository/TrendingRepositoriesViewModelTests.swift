@@ -92,10 +92,12 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         XCTAssertEqual(selectedIndex, 0)
         
         let change2 = changes.removeFirst()
-        guard case .items(let items) = change2 else {
+        guard case .items(let items, let resultMessage) = change2 else {
             XCTFail("Expected change is \".items\", received \".\(change2)\"")
             return
         }
+        let message = "resultMessage".localized()
+        XCTAssertEqual(resultMessage, String(format: message, "3"))
         XCTAssertEqual(items.count, 2)
         guard case .data(let presentation1) = items[0] else {
             XCTFail("Expected type is \".data\", received \".\(items[0])\"")
@@ -198,7 +200,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         changes.removeFirst()
         
         let change = changes.removeFirst()
-        guard case .items(let items) = change else {
+        guard case .items(let items, _) = change else {
             XCTFail("Expected change is \".items\", received \".\(change)\"")
             return
         }
@@ -297,7 +299,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         changes.removeFirst()
         
         let change = changes.removeFirst()
-        guard case .items(let items) = change else {
+        guard case .items(let items, _) = change else {
             XCTFail("Expected change is \".items\", received \".\(change)\"")
             return
         }

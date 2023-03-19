@@ -10,5 +10,7 @@
 "cancel" = "Cancel";
 "errorDescription" = "An alien is probably blocking your signal.";
 "errorMessage" = "Something went wrong...";
+"loading" = "Loading...";
+"resultMessage" = "%@ results found";
 "retry" = "RETRY";
 "trendingRepositories" = "Trending Repositories";

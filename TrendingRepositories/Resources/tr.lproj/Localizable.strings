@@ -10,5 +10,7 @@
 "cancel" = "İptal";
 "errorDescription" = "Bir uzaylı muhtemelen sinyalinizi engelliyor.";
 "errorMessage" = "Bir terslik oldu...";
+"loading" = "Yükleniyor...";
+"resultMessage" = "%@ sonuç bulundu";
 "retry" = "TEKRAR DENE";
 "trendingRepositories" = "Popüler Repolar";

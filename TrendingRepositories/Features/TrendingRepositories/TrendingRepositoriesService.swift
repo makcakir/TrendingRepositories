@@ -35,11 +35,9 @@ final class TrendingRepositoriesService: TrendingRepositoriesDataProtocol {
     func fetchTrendingRepositories(
         language: String?, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
     ) {
-        let languageQuery: String
+        var languageQuery = "stars:>1"
         if let lang = language {
-            languageQuery = "stars:>1 language:" + lang
-        } else {
-            languageQuery = "stars:>1"
+            languageQuery += " language:" + lang
         }
         let parameters: [String : Any] = ["q": languageQuery, "sort": "stars", "per_page": perPage, "page": page]
         NetworkManager.shared.request(Const.trendingUrl, parameters: parameters) { result in

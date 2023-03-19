@@ -21,6 +21,7 @@ final class TrendingRepositoriesViewController: UIViewController {
     
     private let viewModel: TrendingRepositoriesViewModel
     private var presentationTypes: [TrendingRepositoriesViewModel.PresentationType] = []
+    private var headerTitle: String?
     private var filters: [String]?
     private var selectedFilterIndex: Int = 0
     
@@ -82,6 +83,7 @@ private extension TrendingRepositoriesViewController {
     }
     
     @objc func refreshData() {
+        refreshControl.endRefreshing()
         viewModel.fetchRepositories()
     }
     
@@ -106,23 +108,23 @@ private extension TrendingRepositoriesViewController {
     func applyChange(_ change: TrendingRepositoriesViewModel.Change) {
         switch change {
         case .error:
-            refreshControl.endRefreshing()
             errorView.isHidden = false
             retryAnimationView.play()
             tableView.scrollToTop(animated: false)
         case .hideSearch:
             navigationItem.rightBarButtonItem = nil
-        case .items(let items):
-            refreshControl.endRefreshing()
+        case .items(let items, let resultMessage):
             tableView.isScrollEnabled = true
             tableView.isUserInteractionEnabled = true
             if case .loading = presentationTypes.first {
                 presentationTypes = items
+                headerTitle = resultMessage
             } else {
                 presentationTypes.append(contentsOf: items)
             }
             tableView.reloadData()
         case .loading(let items):
+            headerTitle = "loading".localized()
             tableView.scrollToTop(animated: false)
             tableView.isScrollEnabled = false
             tableView.isUserInteractionEnabled = false
@@ -175,6 +177,10 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
         case .loading:
             return tableView.dequeueReusableCell(withClass: TrendingRepositoryShimmerTableViewCell.self)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headerTitle
     }
 }
 
