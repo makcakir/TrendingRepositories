@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BB24F1E129C492C00030E57B /* LanguageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E029C492C00030E57B /* LanguageColor.swift */; };
-		BB24F1E429C4B57B0030E57B /* DispatchGroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E329C4B57B0030E57B /* DispatchGroupProtocol.swift */; };
 		BB24F1E929C4BEEA0030E57B /* FakeDispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */; };
 		BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB3C8A7729C346BA0096B9C5 /* SwifterSwift */; };
 		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
@@ -32,6 +31,8 @@
 		BB7E5E9D296F159F00542C26 /* TrendingRepositoryPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E5E9C296F159F00542C26 /* TrendingRepositoryPresentation.swift */; };
 		BB7E5EA2296F1CE500542C26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB7E5EA4296F1CE500542C26 /* Localizable.strings */; };
 		BB87947029C7902F001150BE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BB87946F29C7902F001150BE /* Kingfisher */; };
+		BB87A42329C9E22400DB754B /* DispatchGroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87A42129C9E22400DB754B /* DispatchGroupProtocol.swift */; };
+		BB87A42429C9E22400DB754B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87A42229C9E22400DB754B /* Endpoint.swift */; };
 		BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */; };
 		BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */; };
 		BBB2B58F29C36F3600B83062 /* UIViewController+ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */; };
@@ -55,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		BB24F1E029C492C00030E57B /* LanguageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageColor.swift; sourceTree = "<group>"; };
-		BB24F1E329C4B57B0030E57B /* DispatchGroupProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchGroupProtocol.swift; sourceTree = "<group>"; };
 		BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDispatchGroup.swift; sourceTree = "<group>"; };
 		BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesService.swift; sourceTree = "<group>"; };
 		BB5BCC6D2971953A00FEB7E0 /* retry.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = retry.json; sourceTree = "<group>"; };
@@ -79,6 +79,8 @@
 		BB7E5E9F296F1C8F00542C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB7E5EA3296F1CE500542C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB7E5EA5296F1CFA00542C26 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB87A42129C9E22400DB754B /* DispatchGroupProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchGroupProtocol.swift; sourceTree = "<group>"; };
+		BB87A42229C9E22400DB754B /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesRouter.swift; sourceTree = "<group>"; };
 		BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesFakeRouter.swift; sourceTree = "<group>"; };
 		BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ActionSheet.swift"; sourceTree = "<group>"; };
@@ -112,14 +114,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BB24F1E229C4B56B0030E57B /* DispatchGroupProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				BB24F1E329C4B57B0030E57B /* DispatchGroupProtocol.swift */,
-			);
-			path = DispatchGroupProtocol;
-			sourceTree = "<group>";
-		};
 		BB24F1E729C4BEEA0030E57B /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +125,8 @@
 		BB5BCC6F297195B000FEB7E0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BB24F1E229C4B56B0030E57B /* DispatchGroupProtocol */,
+				BB87A42129C9E22400DB754B /* DispatchGroupProtocol.swift */,
+				BB87A42229C9E22400DB754B /* Endpoint.swift */,
 				BB5BCC72297195B000FEB7E0 /* Extensions */,
 				BB5BCC70297195B000FEB7E0 /* Managers */,
 			);
@@ -393,7 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5BCC8D2971AD3200FEB7E0 /* UIButton+Styling.swift in Sources */,
-				BB24F1E429C4B57B0030E57B /* DispatchGroupProtocol.swift in Sources */,
+				BB87A42329C9E22400DB754B /* DispatchGroupProtocol.swift in Sources */,
 				BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */,
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
 				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
@@ -404,6 +399,7 @@
 				BB7C113429BA995F00CDF578 /* RoutingManager.swift in Sources */,
 				BB5BCC7B297195B000FEB7E0 /* UIView+Styling.swift in Sources */,
 				BB5BCC7D297195B000FEB7E0 /* UIImageView+ImageLoading.swift in Sources */,
+				BB87A42429C9E22400DB754B /* Endpoint.swift in Sources */,
 				BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */,
 				BB7E5E5D296EDF6700542C26 /* AppDelegate.swift in Sources */,
 				BBB2B58F29C36F3600B83062 /* UIViewController+ActionSheet.swift in Sources */,

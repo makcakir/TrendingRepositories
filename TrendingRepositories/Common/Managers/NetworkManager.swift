@@ -10,18 +10,13 @@ import Foundation
 
 final class NetworkManager {
     
-    enum Method: String {
-        case get
-        case post
-    }
-    
     static let shared = NetworkManager()
     
-    func request<T: Decodable>(
-        _ url: String, method: Method = .get, parameters: [String: Any]? = nil,
-        completion: @escaping (Result<T, Error>) -> Void
+    func request<T: Decodable>(endPoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void
     ) {
-        AF.request(url, method: HTTPMethod(rawValue: method.rawValue.uppercased()), parameters: parameters)
+        let url = endPoint.baseURL + endPoint.path
+        let method = HTTPMethod(rawValue: endPoint.method.rawValue.uppercased())
+        AF.request(url, method: method, parameters: endPoint.parameters)
             .validate()
             .responseDecodable(of: T.self) { response in
                 switch response.result {
