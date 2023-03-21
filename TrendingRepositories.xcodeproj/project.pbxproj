@@ -10,7 +10,6 @@
 		BB24F1E129C492C00030E57B /* LanguageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E029C492C00030E57B /* LanguageColor.swift */; };
 		BB24F1E929C4BEEA0030E57B /* FakeDispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */; };
 		BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB3C8A7729C346BA0096B9C5 /* SwifterSwift */; };
-		BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */; };
 		BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BB5BCC69297193B700FEB7E0 /* Lottie */; };
 		BB5BCC6E2971953A00FEB7E0 /* retry.json in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCC6D2971953A00FEB7E0 /* retry.json */; };
 		BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */; };
@@ -57,7 +56,6 @@
 /* Begin PBXFileReference section */
 		BB24F1E029C492C00030E57B /* LanguageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageColor.swift; sourceTree = "<group>"; };
 		BB24F1E829C4BEEA0030E57B /* FakeDispatchGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDispatchGroup.swift; sourceTree = "<group>"; };
-		BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRepositoriesService.swift; sourceTree = "<group>"; };
 		BB5BCC6D2971953A00FEB7E0 /* retry.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = retry.json; sourceTree = "<group>"; };
 		BB5BCC71297195B000FEB7E0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BB5BCC74297195B000FEB7E0 /* UIView+Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Styling.swift"; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 				BB24F1E029C492C00030E57B /* LanguageColor.swift */,
 				BBD792402970B94F0090C578 /* TrendingRepositoriesResponse.swift */,
 				BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */,
-				BB5BCC612971711900FEB7E0 /* TrendingRepositoriesService.swift */,
 				BB7E5E99296F11F200542C26 /* TrendingRepositoriesViewController.swift */,
 				BB5BCC8A2971A66200FEB7E0 /* TrendingRepositoriesViewController.xib */,
 				BB7E5E97296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift */,
@@ -391,7 +388,6 @@
 				BB87A42329C9E22400DB754B /* DispatchGroupProtocol.swift in Sources */,
 				BB5BCC79297195B000FEB7E0 /* NetworkManager.swift in Sources */,
 				BB7E5E98296EFCAD00542C26 /* TrendingRepositoriesViewModel.swift in Sources */,
-				BB5BCC622971711900FEB7E0 /* TrendingRepositoriesService.swift in Sources */,
 				BB24F1E129C492C00030E57B /* LanguageColor.swift in Sources */,
 				BB7E5E9A296F11F200542C26 /* TrendingRepositoriesViewController.swift in Sources */,
 				BB5BCC8F2971BB5000FEB7E0 /* TrendingRepositoryShimmerTableViewCell.swift in Sources */,

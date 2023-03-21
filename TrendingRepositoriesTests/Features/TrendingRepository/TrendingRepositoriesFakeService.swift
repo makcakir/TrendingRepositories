@@ -10,16 +10,28 @@ import Foundation
 
 final class TrendingRepositoriesFakeService {
     
+    var isSuccess = false
+}
+
+// MARK: - Helpers
+
+private extension TrendingRepositoriesFakeService {
+    
     enum FakeError: Error {
         case invalidResponse
     }
     
-    private var isSuccess = false
-    private var items: [Repository] = []
-    private var result: Result<TrendingRepositoriesResponse, Error> = .failure(FakeError.invalidResponse)
+    func prepareColorsResponse() -> Result<[String: LanguageColor], Error> {
+        let languageColor1 = LanguageColor(
+            color: "#F34B7D", url: URL(unsafeString: "https://github.com/trending?l=C++")
+        )
+        let languageColor2 = LanguageColor(
+            color: "#B07219", url: URL(unsafeString: "https://github.com/trending?l=Java")
+        )
+        return .success(["C++": languageColor1, "Java": languageColor2])
+    }
     
-    func setupSuccessData() {
-        isSuccess = true
+    func prepareItems() -> [Repository] {
         let owner1 = Owner(
             avatarUrl: URL(string: "https://avatars.apple.com")!, login: "apple"
         )
@@ -45,27 +57,13 @@ final class TrendingRepositoriesFakeService {
             htmlUrl: URL(string: "https://github.com/bazelbuild/bazel")!, language: "Java",
             name: "bazel", owner: owner3, starCount: 20432
         )
-        items = [repository1, repository2, repository3]
-    }
-}
-
-// MARK: - TrendingRepositoriesDataProtocol
-
-extension TrendingRepositoriesFakeService: TrendingRepositoriesDataProtocol {
-    
-    func fetchLanguageColors(completion: @escaping LanguageColorsCompletion) {
-        let languageColor1 = LanguageColor(
-            color: "#F34B7D", url: URL(unsafeString: "https://github.com/trending?l=C++")
-        )
-        let languageColor2 = LanguageColor(
-            color: "#B07219", url: URL(unsafeString: "https://github.com/trending?l=Java")
-        )
-        completion(.success(["C++": languageColor1, "Java": languageColor2]))
+        return [repository1, repository2, repository3]
     }
     
-    func fetchTrendingRepositories(
-        language: String?, perPage: Int, page: Int, completion: @escaping TrendingRepositoriesCompletion
-    ) {
+    func prepareRepositoriesResponse(
+        language: String?, perPage: Int, page: Int
+    ) -> Result<TrendingRepositoriesResponse, Error> {
+        let items = prepareItems()
         let filteredItems: [Repository]
         if language?.isEmpty ?? true {
             filteredItems = items
@@ -75,13 +73,28 @@ extension TrendingRepositoriesFakeService: TrendingRepositoriesDataProtocol {
         let currentCount = perPage * (page - 1)
         let remainingCount = filteredItems.count - currentCount
         guard isSuccess, currentCount <= filteredItems.count else {
-            completion(result)
-            return
+            return .failure(FakeError.invalidResponse)
         }
         let lastIndex = min(remainingCount, perPage)
         let response = TrendingRepositoriesResponse(
             items: Array(filteredItems[currentCount..<currentCount + lastIndex]), totalCount: filteredItems.count
         )
-        completion(.success(response))
+        return .success(response)
+    }
+}
+
+// MARK: - NetworkProtocol
+
+extension TrendingRepositoriesFakeService: NetworkProtocol {
+    
+    func request<T: Decodable>(
+        endPoint: TrendingRepositories.Endpoint, completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        switch endPoint {
+        case .colors:
+            completion(prepareColorsResponse() as! Result<T, Error>)
+        case .repositories(let language, let perPage, let page):
+            completion(prepareRepositoriesResponse(language: language, perPage: perPage, page: page) as! Result<T, Error>)
+        }
     }
 }

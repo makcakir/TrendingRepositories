@@ -20,8 +20,8 @@ final class RoutingManager {
     
     func initializeWindow(windowScene: UIWindowScene) -> UIWindow {
         let viewModel = TrendingRepositoriesViewModel(
-            pageItemCount: Const.pageItemCount, dataProtocol: TrendingRepositoriesService(),
-            router: TrendingRepositoriesRouter(), dispatchGroup: DispatchGroup()
+            pageItemCount: Const.pageItemCount, dispatchGroup: DispatchGroup(),
+            networkProtocol: NetworkManager.shared, router: TrendingRepositoriesRouter()
         )
         let viewController = TrendingRepositoriesViewController(viewModel: viewModel)
         rootViewController = UINavigationController(rootViewController: viewController)

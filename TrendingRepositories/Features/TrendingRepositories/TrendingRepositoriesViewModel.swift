@@ -31,9 +31,9 @@ final class TrendingRepositoriesViewModel {
     }()
     
     private let pageItemCount: Int
-    private let dataProtocol: TrendingRepositoriesDataProtocol
-    private let router: TrendingRepositoriesRoutingProtocol
     private let dispatchGroup: DispatchGroupProtocol
+    private let networkProtocol: NetworkProtocol
+    private let router: TrendingRepositoriesRoutingProtocol
     private var colors: [String: LanguageColor] = [:]
     private var expandStates: [Bool] = []
     private var repositories: [Repository] = []
@@ -50,13 +50,13 @@ final class TrendingRepositoriesViewModel {
     var changeHandler: ((Change) -> Void)?
     
     init(
-        pageItemCount: Int, dataProtocol: TrendingRepositoriesDataProtocol,
-        router: TrendingRepositoriesRoutingProtocol, dispatchGroup: DispatchGroupProtocol
+        pageItemCount: Int, dispatchGroup: DispatchGroupProtocol, networkProtocol: NetworkProtocol,
+        router: TrendingRepositoriesRoutingProtocol
     ) {
         self.pageItemCount = pageItemCount
-        self.dataProtocol = dataProtocol
-        self.router = router
         self.dispatchGroup = dispatchGroup
+        self.networkProtocol = networkProtocol
+        self.router = router
         fetchColors()
     }
     
@@ -125,7 +125,9 @@ private extension TrendingRepositoriesViewModel {
     
     func fetchColors() {
         dispatchGroup.enter()
-        dataProtocol.fetchLanguageColors { [weak self] result in
+        networkProtocol.request(
+            endPoint: .colors
+        ) { [weak self] (result: Result<[String: LanguageColor], Error>) in
             guard let self = self else {
                 return
             }
@@ -144,10 +146,11 @@ private extension TrendingRepositoriesViewModel {
     func fetchRepositories(page: Int) {
         dispatchGroup.enter()
         isFetching = true
+        let endPoint = Endpoint.repositories(language: selectedLanguage, perPage: pageItemCount, page: page)
         var res: Result<TrendingRepositoriesResponse, Error>?
-        dataProtocol.fetchTrendingRepositories(
-            language: selectedLanguage, perPage: pageItemCount, page: page
-        ) { [weak self] result in
+        networkProtocol.request(
+            endPoint: endPoint
+        ) { [weak self] (result: Result<TrendingRepositoriesResponse, Error>) in
             guard let self = self else {
                 return
             }

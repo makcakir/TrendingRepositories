@@ -21,7 +21,8 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         fakeService = TrendingRepositoriesFakeService()
         fakeRouter = TrendingRepositoriesFakeRouter()
         viewModel = TrendingRepositoriesViewModel(
-            pageItemCount: 2, dataProtocol: fakeService, router: fakeRouter, dispatchGroup: FakeDispatchGroup()
+            pageItemCount: 2, dispatchGroup: FakeDispatchGroup(), networkProtocol: fakeService,
+            router: fakeRouter
         )
         viewModel.changeHandler = { [unowned self] change in
             self.changes.append(change)
@@ -75,7 +76,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testFetchRepositoriesSuccess() throws {
-        fakeService.setupSuccessData()
+        fakeService.isSuccess = true
         viewModel.fetchRepositories()
         
         XCTAssertEqual(changes.count, 3)
@@ -88,7 +89,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
             XCTFail("Expected change is \".showSearch\", received \".\(change1)\"")
             return
         }
-        XCTAssertEqual(filters.count, 26)
+        XCTAssertEqual(filters.count, 23)
         XCTAssertEqual(selectedIndex, 0)
         
         let change2 = changes.removeFirst()
@@ -129,7 +130,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testSelection() throws {
-        fakeService.setupSuccessData()
+        fakeService.isSuccess = true
         viewModel.fetchRepositories()
         
         // .loading change ignored intentionally!
@@ -180,7 +181,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testPagination() throws {
-        fakeService.setupSuccessData()
+        fakeService.isSuccess = true
         viewModel.fetchRepositories()
         
         // .loading change ignored intentionally!
@@ -230,7 +231,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testOpenRepositoryDetail() throws {
-        fakeService.setupSuccessData()
+        fakeService.isSuccess = true
         viewModel.fetchRepositories()
         
         // .loading change ignored intentionally!
@@ -253,7 +254,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testOpenHomepage() throws {
-        fakeService.setupSuccessData()
+        fakeService.isSuccess = true
         viewModel.fetchRepositories()
         
         // .loading change ignored intentionally!
@@ -276,7 +277,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
     }
     
     func testFilter() throws {
-        fakeService.setupSuccessData()
+        fakeService.isSuccess = true
         viewModel.fetchRepositories()
         
         // .loading change ignored intentionally!
@@ -290,7 +291,8 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         
         XCTAssertTrue(changes.isEmpty)
         
-        viewModel.selectFilterAt(4)
+        // Select C++
+        viewModel.selectFilterAt(3)
         
         // .loading change ignored intentionally!
         changes.removeFirst()

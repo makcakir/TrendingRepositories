@@ -12,6 +12,8 @@ enum Endpoint {
     case repositories(language: String?, perPage: Int, page: Int)
 }
 
+// MARK: - Computed properties
+
 extension Endpoint {
     
     enum Method: String {
