@@ -20,10 +20,10 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
         
         fakeService = TrendingRepositoriesFakeService()
         fakeRouter = TrendingRepositoriesFakeRouter()
-        viewModel = TrendingRepositoriesViewModel(
-            pageItemCount: 2, dispatchGroup: FakeDispatchGroup(), networkProtocol: fakeService,
-            router: fakeRouter
+        let dependency = TrendingRepositoriesDependency(
+            pageItemCount: 2, dispatchGroup: FakeDispatchGroup(), network: fakeService
         )
+        viewModel = TrendingRepositoriesViewModel(dependency: dependency, router: fakeRouter)
         viewModel.changeHandler = { [unowned self] change in
             self.changes.append(change)
         }

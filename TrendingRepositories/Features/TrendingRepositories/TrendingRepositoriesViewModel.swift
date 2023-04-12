@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class TrendingRepositoriesViewModel {
+final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDependency> {
     
     enum PresentationType: Equatable {
         case data(item: TrendingRepositoryPresentation)
@@ -30,9 +30,6 @@ final class TrendingRepositoriesViewModel {
         return formatter
     }()
     
-    private let pageItemCount: Int
-    private let dispatchGroup: DispatchGroupProtocol
-    private let networkProtocol: NetworkProtocol
     private let router: TrendingRepositoriesRoutingProtocol
     private var colors: [String: LanguageColor] = [:]
     private var expandStates: [Bool] = []
@@ -50,20 +47,17 @@ final class TrendingRepositoriesViewModel {
     var changeHandler: ((Change) -> Void)?
     
     init(
-        pageItemCount: Int, dispatchGroup: DispatchGroupProtocol, networkProtocol: NetworkProtocol,
-        router: TrendingRepositoriesRoutingProtocol
+        dependency: TrendingRepositoriesDependency, router: TrendingRepositoriesRoutingProtocol
     ) {
-        self.pageItemCount = pageItemCount
-        self.dispatchGroup = dispatchGroup
-        self.networkProtocol = networkProtocol
         self.router = router
+        super.init(dependency: dependency)
         fetchColors()
     }
     
     func fetchRepositories() {
         expandStates = []
         repositories = []
-        let loadingItems = [PresentationType](repeating: .loading, count: pageItemCount)
+        let loadingItems = [PresentationType](repeating: .loading, count: dependency.pageItemCount)
         changeHandler?(.loading(items: loadingItems))
         fetchRepositories(page: 1)
     }
@@ -72,7 +66,7 @@ final class TrendingRepositoriesViewModel {
         guard !isFetching, repositories.count < totalCount else {
             return
         }
-        let currentPage = repositories.count / pageItemCount
+        let currentPage = repositories.count / dependency.pageItemCount
         fetchRepositories(page: currentPage + 1)
     }
     
@@ -124,14 +118,14 @@ private extension TrendingRepositoriesViewModel {
     }
     
     func fetchColors() {
-        dispatchGroup.enter()
-        networkProtocol.request(
+        dependency.dispatchGroup.enter()
+        dependency.network.request(
             endPoint: .colors
         ) { [weak self] (result: Result<[String: LanguageColor], Error>) in
             guard let self = self else {
                 return
             }
-            self.dispatchGroup.leave()
+            self.dependency.dispatchGroup.leave()
             switch result {
             case .success(let colors):
                 self.colors = colors
@@ -144,21 +138,21 @@ private extension TrendingRepositoriesViewModel {
     }
     
     func fetchRepositories(page: Int) {
-        dispatchGroup.enter()
+        dependency.dispatchGroup.enter()
         isFetching = true
-        let endPoint = Endpoint.repositories(language: selectedLanguage, perPage: pageItemCount, page: page)
+        let endPoint = Endpoint.repositories(language: selectedLanguage, perPage: dependency.pageItemCount, page: page)
         var res: Result<TrendingRepositoriesResponse, Error>?
-        networkProtocol.request(
+        dependency.network.request(
             endPoint: endPoint
         ) { [weak self] (result: Result<TrendingRepositoriesResponse, Error>) in
             guard let self = self else {
                 return
             }
-            self.dispatchGroup.leave()
+            self.dependency.dispatchGroup.leave()
             res = result
         }
         
-        dispatchGroup.notify {
+        dependency.dispatchGroup.notify {
             guard let result = res else {
                 return
             }

@@ -2,7 +2,7 @@
 //  TrendingRepositoriesFakeService.swift
 //  TrendingRepositoriesTests
 //
-//  Created by Mustafa Ali Akçakır on 6.03.2023.
+//  Created by Mustafa Ali Akçakır on 06.03.2023.
 //
 
 import Foundation

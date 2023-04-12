@@ -9,7 +9,7 @@ import Lottie
 import SwifterSwift
 import UIKit
 
-final class TrendingRepositoriesViewController: UIViewController {
+final class TrendingRepositoriesViewController: ViewController<TrendingRepositoriesDependency, TrendingRepositoriesViewModel> {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var errorView: UIView!
@@ -19,20 +19,10 @@ final class TrendingRepositoriesViewController: UIViewController {
     @IBOutlet private weak var retryButton: UIButton!
     private let refreshControl = UIRefreshControl()
     
-    private let viewModel: TrendingRepositoriesViewModel
     private var presentationTypes: [TrendingRepositoriesViewModel.PresentationType] = []
     private var headerTitle: String?
     private var filters: [String]?
     private var selectedFilterIndex: Int = 0
-    
-    init(viewModel: TrendingRepositoriesViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
