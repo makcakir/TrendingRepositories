@@ -26,13 +26,19 @@ final class TrendingRepositoryShimmerTableViewCell: UITableViewCell {
         titleView.makeCornersRounded()
         detailView.makeCornersRounded()
         indexView.makeCornersRounded()
-        addShimmerAnimationToSubviews()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         detailViewGradientLayer?.frame = detailView.bounds
+    }
+    
+    override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+        
+        removeShimmerAnimationFromSubviews()
+        addShimmerAnimationToSubviews()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
