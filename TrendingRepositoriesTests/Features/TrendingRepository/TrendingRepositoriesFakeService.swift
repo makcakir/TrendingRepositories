@@ -36,7 +36,7 @@ private extension TrendingRepositoriesFakeService {
             avatarUrl: URL(string: "https://avatars.apple.com")!, login: "apple"
         )
         let repository1 = Repository(
-            description: "The Swift Programming Language", homepage: "https://swift.org",
+            description: "The Swift Programming Language", homepage: URL(string: "https://swift.org"),
             htmlUrl: URL(string: "https://github.com/apple/swift")!, language: "C++", name: "swift",
             owner: owner1, starCount: 61983
         )
@@ -53,7 +53,7 @@ private extension TrendingRepositoriesFakeService {
         )
         let repository3 = Repository(
             description: "a fast, scalable, multi-language and extensible build system",
-            homepage: "https://bazel.build",
+            homepage: URL(string: "https://bazel.build"),
             htmlUrl: URL(string: "https://github.com/bazelbuild/bazel")!, language: "Java",
             name: "bazel", owner: owner3, starCount: 20432
         )

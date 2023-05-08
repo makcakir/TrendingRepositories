@@ -11,6 +11,10 @@ import Foundation
 struct FailableDecodable<T: Decodable>: Decodable {
     var wrappedValue: T?
     
+    init(wrappedValue: T?) {
+        self.wrappedValue = wrappedValue
+    }
+    
     init(from decoder: Decoder) throws {
         wrappedValue = try? decoder.singleValueContainer().decode(T.self)
     }
