@@ -90,7 +90,7 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
     
     func openHomepageAt(_ index: Int) {
         guard index < repositories.count,
-              let homepageUrl = URL(string: repositories[index].homepage ?? "") else {
+              let homepageUrl = repositories[index].homepage else {
             return
         }
         router.routeToUrl(homepageUrl)
@@ -200,7 +200,7 @@ private extension TrendingRepositoriesViewModel {
         return TrendingRepositoryPresentation(
             index: index, owner: owner, title: repository.name, description: repository.description,
             language: languagePresentation, starCount: count ?? "",
-            shouldDisplayInfoButton: !(repository.homepage?.isEmpty ?? true), isExpanded: isExpanded
+            shouldDisplayInfoButton: repository.homepage != nil, isExpanded: isExpanded
         )
     }
 }

@@ -7,6 +7,15 @@
 
 import Foundation
 
+@propertyWrapper
+struct FailableDecodable<T: Decodable>: Decodable {
+    var wrappedValue: T?
+    
+    init(from decoder: Decoder) throws {
+        wrappedValue = try? decoder.singleValueContainer().decode(T.self)
+    }
+}
+
 struct Owner: Decodable {
     let avatarUrl: URL
     let login: String
@@ -19,7 +28,8 @@ struct Owner: Decodable {
 
 struct Repository: Decodable {
     let description: String?
-    let homepage: String?
+    @FailableDecodable
+    private(set) var homepage: URL?
     let htmlUrl: URL
     let language: String?
     let name: String
