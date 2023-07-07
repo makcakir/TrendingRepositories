@@ -8,12 +8,12 @@
 import Foundation
 
 protocol TrendingRepositoriesRoutingProtocol {
-    
+
     func routeToUrl(_ url: URL)
 }
 
 final class TrendingRepositoriesRouter: TrendingRepositoriesRoutingProtocol {
-    
+
     func routeToUrl(_ url: URL) {
         RoutingManager.shared.openWebURL(url)
     }

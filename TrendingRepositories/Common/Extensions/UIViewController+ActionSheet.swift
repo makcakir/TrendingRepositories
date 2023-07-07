@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    
+
     @discardableResult
     func showAlert(
         title: String? = nil, message: String? = nil, preferredStyle: UIAlertController.Style,
@@ -19,13 +19,11 @@ extension UIViewController {
             title: title, message: message, preferredStyle: preferredStyle
         )
         for (index, buttonTitle) in (buttonTitles ?? []).enumerated() {
-            let action = UIAlertAction(
-                title: buttonTitle, style: .default, handler: { _ in
-                    completion?(index)
-                }
-            )
+            let action = UIAlertAction(title: buttonTitle, style: .default) { _ in
+                completion?(index)
+            }
             alertController.addAction(action)
-            if let highlightedButtonIndex = highlightedButtonIndex, index == highlightedButtonIndex {
+            if let highlightedButtonIndex, index == highlightedButtonIndex {
                 alertController.preferredAction = action
                 action.setValue(true, forKey: "checked")
             }

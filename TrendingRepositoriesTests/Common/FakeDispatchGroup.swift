@@ -11,15 +11,15 @@ import Foundation
 final class FakeDispatchGroup {}
 
 extension FakeDispatchGroup: DispatchGroupProtocol {
-    
+
     func enter() {
         // Left blank intentionally!
     }
-    
+
     func leave() {
         // Left blank intentionally!
     }
-    
+
     func notify(execute work: @escaping @convention(block) () -> Void) {
         work()
     }

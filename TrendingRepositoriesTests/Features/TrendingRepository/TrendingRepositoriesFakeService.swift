@@ -9,18 +9,19 @@ import Foundation
 @testable import TrendingRepositories
 
 final class TrendingRepositoriesFakeService {
-    
+
     var isSuccess = false
 }
 
 // MARK: - Helpers
 
+// swiftlint:disable no_magic_numbers force_unwrapping
 private extension TrendingRepositoriesFakeService {
-    
+
     enum FakeError: Error {
         case invalidResponse
     }
-    
+
     func prepareColorsResponse() -> Result<[String: LanguageColor], Error> {
         let languageColor1 = LanguageColor(
             color: "#F34B7D", url: URL(unsafeString: "https://github.com/trending?l=C++")
@@ -30,7 +31,7 @@ private extension TrendingRepositoriesFakeService {
         )
         return .success(["C++": languageColor1, "Java": languageColor2])
     }
-    
+
     func prepareItems() -> [Repository] {
         let owner1 = Owner(
             avatarUrl: URL(string: "https://avatars.apple.com")!, login: "apple"
@@ -38,7 +39,7 @@ private extension TrendingRepositoriesFakeService {
         let repository1 = Repository(
             description: "The Swift Programming Language", homepage: URL(string: "https://swift.org"),
             htmlUrl: URL(string: "https://github.com/apple/swift")!, language: "C++", name: "swift",
-            owner: owner1, starCount: 61983
+            owner: owner1, starCount: 61_983
         )
         let owner2 = Owner(
             avatarUrl: URL(string: "https://avatars.akullpp.com")!, login: "akullpp"
@@ -46,7 +47,7 @@ private extension TrendingRepositoriesFakeService {
         let repository2 = Repository(
             description: "A curated list of awesome frameworks", homepage: nil,
             htmlUrl: URL(string: "https://github.com/akullpp/awesome-java")!, language: nil,
-            name: "awesome-java", owner: owner2, starCount: 35638
+            name: "awesome-java", owner: owner2, starCount: 35_638
         )
         let owner3 = Owner(
             avatarUrl: URL(string: "https://avatars.bazelbuild.com")!, login: "bazelbuild"
@@ -55,11 +56,11 @@ private extension TrendingRepositoriesFakeService {
             description: "a fast, scalable, multi-language and extensible build system",
             homepage: URL(string: "https://bazel.build"),
             htmlUrl: URL(string: "https://github.com/bazelbuild/bazel")!, language: "Java",
-            name: "bazel", owner: owner3, starCount: 20432
+            name: "bazel", owner: owner3, starCount: 20_432
         )
         return [repository1, repository2, repository3]
     }
-    
+
     func prepareRepositoriesResponse(
         language: String?, perPage: Int, page: Int
     ) -> Result<TrendingRepositoriesResponse, Error> {
@@ -82,19 +83,24 @@ private extension TrendingRepositoriesFakeService {
         return .success(response)
     }
 }
+// swiftlint:enable no_magic_numbers force_unwrapping
 
 // MARK: - NetworkProtocol
 
+// swiftlint:disable force_cast
 extension TrendingRepositoriesFakeService: NetworkProtocol {
-    
+
     func request<T: Decodable>(
         endPoint: TrendingRepositories.Endpoint, completion: @escaping (Result<T, Error>) -> Void
     ) {
         switch endPoint {
         case .colors:
-            completion(prepareColorsResponse() as! Result<T, Error>)
-        case .repositories(let language, let perPage, let page):
-            completion(prepareRepositoriesResponse(language: language, perPage: perPage, page: page) as! Result<T, Error>)
+            let response = prepareColorsResponse()
+            completion(response as! Result<T, Error>)
+        case let .repositories(language, perPage, page):
+            let response = prepareRepositoriesResponse(language: language, perPage: perPage, page: page)
+            completion(response as! Result<T, Error>)
         }
     }
 }
+// swiftlint:enable force_cast

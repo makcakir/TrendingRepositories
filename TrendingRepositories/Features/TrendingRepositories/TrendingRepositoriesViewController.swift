@@ -9,8 +9,9 @@ import Lottie
 import SwifterSwift
 import UIKit
 
+// swiftlint:disable:next line_length
 final class TrendingRepositoriesViewController: ViewController<TrendingRepositoriesDependency, TrendingRepositoriesViewModel> {
-    
+
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var retryAnimationView: LottieAnimationView!
@@ -18,21 +19,21 @@ final class TrendingRepositoriesViewController: ViewController<TrendingRepositor
     @IBOutlet private weak var errorDescriptionLabel: UILabel!
     @IBOutlet private weak var retryButton: UIButton!
     private let refreshControl = UIRefreshControl()
-    
+
     private var presentationTypes: [TrendingRepositoriesViewModel.PresentationType] = []
     private var headerTitle: String?
     private var filters: [String]?
     private var selectedFilterIndex: Int = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupSubviews()
         bindViewModel()
         refreshData()
     }
-    
-    @IBAction func retryButtonTapped(_ sender: Any) {
+
+    @IBAction private func retryButtonTapped(_ sender: Any) {
         refreshData()
     }
 }
@@ -40,44 +41,47 @@ final class TrendingRepositoriesViewController: ViewController<TrendingRepositor
 // MARK: - Helpers
 
 private extension TrendingRepositoriesViewController {
-    
+
     enum Const {
-        static let lottieAnimationSpeed: CGFloat = 0.5
         static let animationDuration: CGFloat = 0.3
+        static let lottieAnimationSpeed: CGFloat = 0.5
+        static let activityIndicatorHeight: CGFloat = 44
     }
-    
+
     func setupSubviews() {
         title = "trendingRepositories".localized()
-        
+
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
-        
+
         tableView.register(nibWithCellClass: TrendingRepositoryShimmerTableViewCell.self)
         tableView.register(nibWithCellClass: TrendingRepositoryTableViewCell.self)
-        
-        let frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44.0)
+
+        let frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: Const.activityIndicatorHeight)
         let activityIndicatorView = UIActivityIndicatorView(frame: frame)
         activityIndicatorView.startAnimating()
         tableView.tableFooterView = activityIndicatorView
-        
+
         retryAnimationView.contentMode = .scaleAspectFit
         retryAnimationView.loopMode = .loop
         retryAnimationView.animationSpeed = Const.lottieAnimationSpeed
-        
+
         errorMessageLabel.text = "errorMessage".localized()
-        
+
         errorDescriptionLabel.text = "errorDescription".localized()
-        
+
         retryButton.setTitle("retry".localized(), for: .normal)
         retryButton.applyRoundedRectStyling()
     }
-    
-    @objc func refreshData() {
+
+    @objc
+    func refreshData() {
         refreshControl.endRefreshing()
         viewModel.fetchRepositories()
     }
-    
-    @objc func searchBarButtonItemTapped(barButtonItem: UIBarButtonItem) {
+
+    @objc
+    func searchBarButtonItemTapped(barButtonItem: UIBarButtonItem) {
         showAlert(
             preferredStyle: .actionSheet, buttonTitles: filters, highlightedButtonIndex: selectedFilterIndex,
             barButtonItem: barButtonItem
@@ -85,16 +89,16 @@ private extension TrendingRepositoriesViewController {
             self.viewModel.selectFilterAt(index)
         }
     }
-    
+
     func bindViewModel() {
         viewModel.changeHandler = { [weak self] change in
-            guard let self = self else {
+            guard let self else {
                 return
             }
             self.applyChange(change)
         }
     }
-    
+
     func applyChange(_ change: TrendingRepositoriesViewModel.Change) {
         switch change {
         case .error:
@@ -103,7 +107,7 @@ private extension TrendingRepositoriesViewController {
             tableView.scrollToTop(animated: false)
         case .hideSearch:
             navigationItem.rightBarButtonItem = nil
-        case .items(let items, let resultMessage):
+        case let .items(items, resultMessage):
             tableView.isScrollEnabled = true
             tableView.isUserInteractionEnabled = true
             if case .loading = presentationTypes.first {
@@ -124,7 +128,7 @@ private extension TrendingRepositoriesViewController {
             tableView.reloadData()
         case .paginationEnded:
             tableView.tableFooterView = nil
-        case .selected(let item, let index):
+        case let .selected(item, index):
             let indexPath = IndexPath(row: index, section: 0)
             guard let cell = tableView.cellForRow(at: indexPath) as? TrendingRepositoryTableViewCell else {
                 return
@@ -134,7 +138,7 @@ private extension TrendingRepositoriesViewController {
             UIView.animate(withDuration: Const.animationDuration) {
                 self.tableView.performBatchUpdates(nil)
             }
-        case .showSearch(let filters, let selectedFilterIndex):
+        case let .showSearch(filters, selectedFilterIndex):
             self.filters = filters
             self.selectedFilterIndex = selectedFilterIndex
             let barButtonItem = UIBarButtonItem(
@@ -148,13 +152,13 @@ private extension TrendingRepositoriesViewController {
 // MARK: - UITableViewDataSource
 
 extension TrendingRepositoriesViewController: UITableViewDataSource {
-    
+
     func tableView(
         _ tableView: UITableView, numberOfRowsInSection section: Int
     ) -> Int {
         return presentationTypes.count
     }
-    
+
     func tableView(
         _ tableView: UITableView, cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
@@ -168,7 +172,7 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
             return tableView.dequeueReusableCell(withClass: TrendingRepositoryShimmerTableViewCell.self)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headerTitle
     }
@@ -177,11 +181,11 @@ extension TrendingRepositoriesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension TrendingRepositoriesViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectRepositoryAt(indexPath.row)
     }
-    
+
     func tableView(
         _ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath
     ) {
@@ -195,14 +199,14 @@ extension TrendingRepositoriesViewController: UITableViewDelegate {
 // MARK: TrendingRepositoryTableViewCellDelegate
 
 extension TrendingRepositoriesViewController: TrendingRepositoryTableViewCellDelegate {
-    
+
     func trendingRepositoryTableViewCellDidTapTitleButton(cell: TrendingRepositoryTableViewCell) {
         guard let row = tableView.indexPath(for: cell)?.row else {
             return
         }
         viewModel.openRepositoryDetailAt(row)
     }
-    
+
     func trendingRepositoryTableViewCellDidTapInfoButton(cell: TrendingRepositoryTableViewCell) {
         guard let row = tableView.indexPath(for: cell)?.row else {
             return

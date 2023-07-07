@@ -10,11 +10,11 @@ import Foundation
 @propertyWrapper
 struct FailableDecodable<T: Decodable>: Decodable {
     var wrappedValue: T?
-    
+
     init(wrappedValue: T?) {
         self.wrappedValue = wrappedValue
     }
-    
+
     init(from decoder: Decoder) throws {
         wrappedValue = try? decoder.singleValueContainer().decode(T.self)
     }
@@ -23,7 +23,7 @@ struct FailableDecodable<T: Decodable>: Decodable {
 struct Owner: Decodable {
     let avatarUrl: URL
     let login: String
-    
+
     enum CodingKeys: String, CodingKey {
         case avatarUrl = "avatar_url"
         case login
@@ -32,14 +32,13 @@ struct Owner: Decodable {
 
 struct Repository: Decodable {
     let description: String?
-    @FailableDecodable
-    private(set) var homepage: URL?
+    @FailableDecodable private(set) var homepage: URL?
     let htmlUrl: URL
     let language: String?
     let name: String
     let owner: Owner
     let starCount: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case description
         case homepage
@@ -54,7 +53,7 @@ struct Repository: Decodable {
 struct TrendingRepositoriesResponse: Decodable {
     let items: [Repository]
     let totalCount: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case items
         case totalCount = "total_count"

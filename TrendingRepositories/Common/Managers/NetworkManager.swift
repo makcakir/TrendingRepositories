@@ -9,21 +9,21 @@ import Alamofire
 import Foundation
 
 protocol NetworkProtocol {
-    
+
     func request<T: Decodable>(endPoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void)
 }
 
 final class NetworkManager {
-    
+
     static let shared = NetworkManager()
-    
+
     private init() {}
 }
 
 // MARK: - NetworkProtocol
 
 extension NetworkManager: NetworkProtocol {
-    
+
     func request<T: Decodable>(endPoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) {
         let url = endPoint.baseURL + endPoint.path
         let method = HTTPMethod(rawValue: endPoint.method.rawValue.uppercased())

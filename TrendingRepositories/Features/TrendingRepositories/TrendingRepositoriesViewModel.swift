@@ -8,12 +8,12 @@
 import Foundation
 
 final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDependency> {
-    
+
     enum PresentationType: Equatable {
         case data(item: TrendingRepositoryPresentation)
         case loading
     }
-    
+
     enum Change: Equatable {
         case error
         case hideSearch
@@ -23,13 +23,13 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
         case selected(item: PresentationType, index: Int)
         case showSearch(filters: [String], selectedIndex: Int)
     }
-    
+
     private lazy var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         return formatter
     }()
-    
+
     private let router: TrendingRepositoriesRoutingProtocol
     private var colors: [String: LanguageColor] = [:]
     private var expandStates: [Bool] = []
@@ -38,14 +38,14 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
     private var totalCount = 0
     private var selectedFilterIndex: Int = 0
     private var selectedLanguage: String? {
-        guard  selectedFilterIndex > 0, selectedFilterIndex < Const.popularLanguages.count else {
+        guard  selectedFilterIndex > 0, selectedFilterIndex < Const.filters.count else {
             return nil
         }
-        return Const.popularLanguages[selectedFilterIndex]
+        return Const.filters[selectedFilterIndex]
     }
-    
+
     var changeHandler: ((Change) -> Void)?
-    
+
     init(
         dependency: TrendingRepositoriesDependency, router: TrendingRepositoriesRoutingProtocol
     ) {
@@ -53,7 +53,7 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
         super.init(dependency: dependency)
         fetchColors()
     }
-    
+
     func fetchRepositories() {
         expandStates = []
         repositories = []
@@ -61,7 +61,7 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
         changeHandler?(.loading(items: loadingItems))
         fetchRepositories(page: 1)
     }
-    
+
     func fetchNextPage() {
         guard !isFetching, repositories.count < totalCount else {
             return
@@ -69,7 +69,7 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
         let currentPage = repositories.count / dependency.pageItemCount
         fetchRepositories(page: currentPage + 1)
     }
-    
+
     func selectRepositoryAt(_ index: Int) {
         guard index < expandStates.count else {
             return
@@ -80,22 +80,22 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
         )
         changeHandler?(.selected(item: PresentationType.data(item: item), index: index))
     }
-    
+
     func openRepositoryDetailAt(_ index: Int) {
         guard index < repositories.count else {
             return
         }
         router.routeToUrl(repositories[index].htmlUrl)
     }
-    
+
     func openHomepageAt(_ index: Int) {
         guard index < repositories.count,
-              let homepageUrl = repositories[index].homepage else {
+            let homepageUrl = repositories[index].homepage else {
             return
         }
         router.routeToUrl(homepageUrl)
     }
-    
+
     func selectFilterAt(_ index: Int) {
         guard index != selectedFilterIndex else {
             return
@@ -108,35 +108,34 @@ final class TrendingRepositoriesViewModel: ViewModel<TrendingRepositoriesDepende
 // MARK: - Helpers
 
 private extension TrendingRepositoriesViewModel {
-    
+
     enum Const {
-        static let popularLanguages = [
+        static let filters = [
             "all".localized(), "C", "C#", "C++", "CSS", "Dart", "Go", "HTML", "Java", "JavaScript",
             "Kotlin", "Lua", "Objective-C", "Perl", "PHP", "Python", "Ruby", "Rust", "Scala",
             "Shell", "Swift", "TypeScript", "Vue"
         ]
     }
-    
+
     func fetchColors() {
         dependency.dispatchGroup.enter()
         dependency.network.request(
             endPoint: .colors
         ) { [weak self] (result: Result<[String: LanguageColor], Error>) in
-            guard let self = self else {
+            guard let self else {
                 return
             }
             self.dependency.dispatchGroup.leave()
             switch result {
             case .success(let colors):
                 self.colors = colors
-                break
-            case .failure(_):
+            case .failure:
                 // Left blank intentionally!
                 break
             }
         }
     }
-    
+
     func fetchRepositories(page: Int) {
         dependency.dispatchGroup.enter()
         isFetching = true
@@ -145,13 +144,13 @@ private extension TrendingRepositoriesViewModel {
         dependency.network.request(
             endPoint: endPoint
         ) { [weak self] (result: Result<TrendingRepositoriesResponse, Error>) in
-            guard let self = self else {
+            guard let self else {
                 return
             }
             self.dependency.dispatchGroup.leave()
             res = result
         }
-        
+
         dependency.dispatchGroup.notify {
             guard let result = res else {
                 return
@@ -168,34 +167,36 @@ private extension TrendingRepositoriesViewModel {
                     self.expandStates.append(item.isExpanded)
                     return PresentationType.data(item: item)
                 }
-                let formattedCount = self.numberFormatter.string(from: NSNumber(value: response.totalCount))
+                // swiftlint:disable:next legacy_objc_type
+                let formattedCount = self.numberFormatter.string(from: response.totalCount as NSNumber)
                 let resultMessage = String(format: "resultMessage".localized(), formattedCount ?? "")
-                self.changeHandler?(.showSearch(filters: Const.popularLanguages, selectedIndex: self.selectedFilterIndex))
+                self.changeHandler?(.showSearch(filters: Const.filters, selectedIndex: self.selectedFilterIndex))
                 self.changeHandler?(.items(items: dataItems, resultMessage: resultMessage))
-                
+
                 if self.repositories.count >= self.totalCount {
                     self.changeHandler?(.paginationEnded)
                 }
-            case .failure(_):
+            case .failure:
                 self.changeHandler?(.hideSearch)
                 self.changeHandler?(.error)
             }
         }
     }
-    
+
     func createPresentationFrom(
         _ repository: Repository, index: Int, isExpanded: Bool
     ) -> TrendingRepositoryPresentation {
         let owner = OwnerPresentation(
-            imageUrl: repository.owner.avatarUrl, name:  repository.owner.login
+            imageUrl: repository.owner.avatarUrl, name: repository.owner.login
         )
-        var languagePresentation: LanguagePresentation? = nil
+        var languagePresentation: LanguagePresentation?
         if let language = repository.language {
             languagePresentation = LanguagePresentation(
                 name: language, colorHex: colors[language]?.color ?? "#CCCCCC"
             )
         }
-        let count = numberFormatter.string(from: NSNumber(value: repository.starCount))
+        // swiftlint:disable:next legacy_objc_type
+        let count = numberFormatter.string(from: repository.starCount as NSNumber)
         let index = "#" + String(index + 1)
         return TrendingRepositoryPresentation(
             index: index, owner: owner, title: repository.name, description: repository.description,

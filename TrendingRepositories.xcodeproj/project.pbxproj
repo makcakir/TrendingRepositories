@@ -282,6 +282,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BBA02D582A54CA5F00B9045A /* PBXTargetDependency */,
 			);
 			name = TrendingRepositories;
 			packageProductDependencies = (
@@ -306,6 +307,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BBD0D90E2A58266B008AA0EF /* PBXTargetDependency */,
 				BB7E5E71296EDF6900542C26 /* PBXTargetDependency */,
 			);
 			name = TrendingRepositoriesTests;
@@ -350,6 +352,7 @@
 				BB7C113029BA872D00CDF578 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
 				BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 				BB87946E29C7902F001150BE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BBA02D522A54C67F00B9045A /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
 			projectDirPath = "";
@@ -431,6 +434,14 @@
 			isa = PBXTargetDependency;
 			target = BB7E5E58296EDF6700542C26 /* TrendingRepositories */;
 			targetProxy = BB7E5E70296EDF6900542C26 /* PBXContainerItemProxy */;
+		};
+		BBA02D582A54CA5F00B9045A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = BBA02D572A54CA5F00B9045A /* SwiftLintPlugin */;
+		};
+		BBD0D90E2A58266B008AA0EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = BBD0D90D2A58266B008AA0EF /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -728,6 +739,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		BBA02D522A54C67F00B9045A /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint/";
+			requirement = {
+				kind = exactVersion;
+				version = 0.51.0;
+			};
+		};
 		BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -758,6 +777,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB87946E29C7902F001150BE /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		BBA02D572A54CA5F00B9045A /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBA02D522A54C67F00B9045A /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+		BBD0D90D2A58266B008AA0EF /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBA02D522A54C67F00B9045A /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 		BBFF7764298D70AB00E8AECC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
