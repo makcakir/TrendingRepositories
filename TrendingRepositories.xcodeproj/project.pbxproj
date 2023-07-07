@@ -36,6 +36,7 @@
 		BB881E2D29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2C29C1E7B5003342C4 /* TrendingRepositoriesRouter.swift */; };
 		BB881E2F29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB881E2E29C1EC84003342C4 /* TrendingRepositoriesFakeRouter.swift */; };
 		BBB2B58F29C36F3600B83062 /* UIViewController+ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B58E29C36F3600B83062 /* UIViewController+ActionSheet.swift */; };
+		BBD0D9112A58365D008AA0EF /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = BBD0D9102A58365D008AA0EF /* RswiftLibrary */; };
 		BBD6CC2F29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6CC2D29B6502800CE3A82 /* TrendingRepositoriesViewModelTests.swift */; };
 		BBD6CC3029B6502800CE3A82 /* TrendingRepositoriesFakeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6CC2E29B6502800CE3A82 /* TrendingRepositoriesFakeService.swift */; };
 		BBD79232297038C60090C578 /* TrendingRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD79231297038C60090C578 /* TrendingRepositoryTableViewCell.swift */; };
@@ -103,6 +104,7 @@
 				BB7C113229BA872D00CDF578 /* AlamofireNetworkActivityLogger in Frameworks */,
 				BB3C8A7829C346BA0096B9C5 /* SwifterSwift in Frameworks */,
 				BB5BCC6A297193B700FEB7E0 /* Lottie in Frameworks */,
+				BBD0D9112A58365D008AA0EF /* RswiftLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +284,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BBD0D9132A583687008AA0EF /* PBXTargetDependency */,
 				BBA02D582A54CA5F00B9045A /* PBXTargetDependency */,
 			);
 			name = TrendingRepositories;
@@ -291,6 +294,7 @@
 				BB7C113129BA872D00CDF578 /* AlamofireNetworkActivityLogger */,
 				BB3C8A7729C346BA0096B9C5 /* SwifterSwift */,
 				BB87946F29C7902F001150BE /* Kingfisher */,
+				BBD0D9102A58365D008AA0EF /* RswiftLibrary */,
 			);
 			productName = TrendingRepositories;
 			productReference = BB7E5E59296EDF6700542C26 /* TrendingRepositories.app */;
@@ -353,6 +357,7 @@
 				BB3C8A7629C346BA0096B9C5 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 				BB87946E29C7902F001150BE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BBA02D522A54C67F00B9045A /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				BBD0D90F2A58365D008AA0EF /* XCRemoteSwiftPackageReference "R" */,
 			);
 			productRefGroup = BB7E5E5A296EDF6700542C26 /* Products */;
 			projectDirPath = "";
@@ -442,6 +447,10 @@
 		BBD0D90E2A58266B008AA0EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = BBD0D90D2A58266B008AA0EF /* SwiftLintPlugin */;
+		};
+		BBD0D9132A583687008AA0EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = BBD0D9122A583687008AA0EF /* RswiftGenerateInternalResources */;
 		};
 /* End PBXTargetDependency section */
 
@@ -747,6 +756,14 @@
 				version = 0.51.0;
 			};
 		};
+		BBD0D90F2A58365D008AA0EF /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		BBFF7763298D70AB00E8AECC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -787,6 +804,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BBA02D522A54C67F00B9045A /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
+		};
+		BBD0D9102A58365D008AA0EF /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD0D90F2A58365D008AA0EF /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		BBD0D9122A583687008AA0EF /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
 		};
 		BBFF7764298D70AB00E8AECC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

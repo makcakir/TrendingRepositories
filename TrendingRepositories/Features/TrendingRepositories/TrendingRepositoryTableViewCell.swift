@@ -28,6 +28,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
     @IBOutlet private weak var languageContentView: UIView!
     @IBOutlet private weak var languageColorView: UIView!
     @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var starImageView: UIImageView!
     @IBOutlet private weak var starCountLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
     @IBOutlet private weak var infoButton: UIButton!
@@ -42,6 +43,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
         profileImageView.layer.borderColor = UIColor.label.cgColor
         profileImageView.layer.borderWidth = Const.bordorWidth
         languageColorView.makeCornersRounded()
+        starImageView.image = R.image.star()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -52,8 +54,7 @@ final class TrendingRepositoryTableViewCell: UITableViewCell {
     }
 
     func fill(_ presentation: TrendingRepositoryPresentation) {
-        // swiftlint:disable:next discouraged_object_literal
-        profileImageView.setImage(presentation.owner.imageUrl, placeholderImage: #imageLiteral(resourceName: "avatar"))
+        profileImageView.setImage(presentation.owner.imageUrl, placeholderImage: R.image.avatar())
         indexLabel.text = presentation.index
         ownerNameLabel.text = presentation.owner.name
         titleButton.setTitle(presentation.title, for: .normal)

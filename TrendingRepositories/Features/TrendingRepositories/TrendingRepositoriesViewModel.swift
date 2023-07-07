@@ -111,9 +111,9 @@ private extension TrendingRepositoriesViewModel {
 
     enum Const {
         static let filters = [
-            "all".localized(), "C", "C#", "C++", "CSS", "Dart", "Go", "HTML", "Java", "JavaScript",
-            "Kotlin", "Lua", "Objective-C", "Perl", "PHP", "Python", "Ruby", "Rust", "Scala",
-            "Shell", "Swift", "TypeScript", "Vue"
+            R.string.localizable.all(), "Assembly", "C", "C#", "C++", "CSS", "Dart", "Dockerfile", "Go", "HTML", "Java",
+            "JavaScript", "Kotlin", "Lua", "Makefile", "Markdown", "Objective-C", "Perl", "PHP", "Python", "Ruby",
+            "Rust", "Scala", "Shell", "Swift", "TypeScript", "Vue"
         ]
     }
 
@@ -169,7 +169,7 @@ private extension TrendingRepositoriesViewModel {
                 }
                 // swiftlint:disable:next legacy_objc_type
                 let formattedCount = self.numberFormatter.string(from: response.totalCount as NSNumber)
-                let resultMessage = String(format: "resultMessage".localized(), formattedCount ?? "")
+                let resultMessage = R.string.localizable.resultMessage(formattedCount ?? "")
                 self.changeHandler?(.showSearch(filters: Const.filters, selectedIndex: self.selectedFilterIndex))
                 self.changeHandler?(.items(items: dataItems, resultMessage: resultMessage))
 

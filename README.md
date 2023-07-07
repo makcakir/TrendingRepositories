@@ -7,7 +7,9 @@ Dependencies used:
 - AlamofireNetworkActivityLogger: https://github.com/konkab/AlamofireNetworkActivityLogger
 - Kingfisher: https://github.com/onevcat/Kingfisher
 - Lottie: https://github.com/airbnb/lottie-ios
+- R: https://github.com/mac-cain13/R.swift
 - SwifterSwift: https://github.com/SwifterSwift/SwifterSwift
+- SwiftLint: https://github.com/realm/SwiftLint
 
 
 # Demo

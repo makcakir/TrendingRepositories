@@ -29,7 +29,7 @@ extension UIViewController {
             }
         }
         let style: UIAlertAction.Style = preferredStyle == .actionSheet ? .cancel : .destructive
-        alertController.addAction(UIAlertAction(title: "cancel".localized(), style: style, handler: nil))
+        alertController.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: style, handler: nil))
         alertController.popoverPresentationController?.barButtonItem = barButtonItem
         present(alertController, animated: true, completion: nil)
         return alertController

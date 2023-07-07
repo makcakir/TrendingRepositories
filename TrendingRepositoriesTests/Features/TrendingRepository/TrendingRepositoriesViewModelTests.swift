@@ -98,8 +98,7 @@ final class TrendingRepositoriesViewModelTests: XCTestCase {
             XCTFail("Expected change is \".items\", received \".\(change2)\"")
             return
         }
-        let message = "resultMessage".localized()
-        XCTAssertEqual(resultMessage, String(format: message, "3"))
+        XCTAssertEqual(resultMessage, R.string.localizable.resultMessage("3"))
         XCTAssertEqual(items.count, 2)
         guard case .data(let presentation1) = items[0] else {
             XCTFail("Expected type is \".data\", received \".\(items[0])\"")

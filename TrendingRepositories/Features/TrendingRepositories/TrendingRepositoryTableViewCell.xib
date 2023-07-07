@@ -180,6 +180,7 @@
                 <outlet property="ownerNameLabel" destination="mBn-W6-Nzb" id="Yqs-gx-rl0"/>
                 <outlet property="profileImageView" destination="6Xp-Iz-frX" id="ask-vC-Qnp"/>
                 <outlet property="starCountLabel" destination="4aJ-sR-zGh" id="QnD-gT-tKs"/>
+                <outlet property="starImageView" destination="BdT-bh-nUy" id="Ci2-Ca-jRX"/>
                 <outlet property="titleButton" destination="T0B-p4-wTx" id="W2b-bg-HAB"/>
             </connections>
             <point key="canvasLocation" x="127" y="-181"/>

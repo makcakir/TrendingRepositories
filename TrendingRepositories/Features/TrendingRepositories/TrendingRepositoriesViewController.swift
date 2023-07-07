@@ -49,7 +49,7 @@ private extension TrendingRepositoriesViewController {
     }
 
     func setupSubviews() {
-        title = "trendingRepositories".localized()
+        title = R.string.localizable.trendingRepositories()
 
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -66,11 +66,11 @@ private extension TrendingRepositoriesViewController {
         retryAnimationView.loopMode = .loop
         retryAnimationView.animationSpeed = Const.lottieAnimationSpeed
 
-        errorMessageLabel.text = "errorMessage".localized()
+        errorMessageLabel.text = R.string.localizable.errorMessage()
 
-        errorDescriptionLabel.text = "errorDescription".localized()
+        errorDescriptionLabel.text = R.string.localizable.errorDescription()
 
-        retryButton.setTitle("retry".localized(), for: .normal)
+        retryButton.setTitle(R.string.localizable.retry(), for: .normal)
         retryButton.applyRoundedRectStyling()
     }
 
@@ -118,7 +118,7 @@ private extension TrendingRepositoriesViewController {
             }
             tableView.reloadData()
         case .loading(let items):
-            headerTitle = "loading".localized()
+            headerTitle = R.string.localizable.loading()
             tableView.scrollToTop(animated: false)
             tableView.isScrollEnabled = false
             tableView.isUserInteractionEnabled = false
